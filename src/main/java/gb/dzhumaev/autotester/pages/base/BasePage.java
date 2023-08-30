@@ -7,6 +7,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
+import java.util.List;
 
 import static gb.dzhumaev.autotester.constants.Constant.TimeoutVariable.EXPLICIT_WAIT;
 
@@ -21,8 +22,13 @@ public class BasePage {
         driver.get(url);
     }
 
-    public WebElement waitElementIsVisible(By locator) {
+    public WebElement waitElementIsVisibleByLocator(By locator) {
         return new WebDriverWait(driver, Duration.ofSeconds(EXPLICIT_WAIT))
                 .until(ExpectedConditions.visibilityOfElementLocated(locator));
+    }
+
+    public List<WebElement> waitElementsIsVisibleByLocator(By locator) {
+        return new WebDriverWait(driver, Duration.ofSeconds(EXPLICIT_WAIT))
+                .until(ExpectedConditions.visibilityOfAllElementsLocatedBy(locator));
     }
 }
