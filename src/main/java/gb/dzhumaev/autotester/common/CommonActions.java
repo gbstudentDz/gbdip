@@ -1,5 +1,6 @@
 package gb.dzhumaev.autotester.common;
 
+import org.openqa.selenium.Point;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
@@ -9,6 +10,7 @@ import java.time.Duration;
 import java.util.concurrent.TimeUnit;
 
 import static gb.dzhumaev.autotester.common.Config.PLATFORM_AND_BROWSER;
+import static gb.dzhumaev.autotester.common.Config.WINDOW_POSITION;
 import static gb.dzhumaev.autotester.constants.Constant.TimeoutVariable.IMPLICIT_WAIT;
 
 public class CommonActions {
@@ -29,6 +31,7 @@ public class CommonActions {
         }
 
 
+        driver.manage().window().setPosition(WINDOW_POSITION);
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(IMPLICIT_WAIT));
 

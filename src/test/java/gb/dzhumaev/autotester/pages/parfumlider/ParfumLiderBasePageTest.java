@@ -26,14 +26,6 @@ public class ParfumLiderBasePageTest extends BaseTest {
     }
 
     @Test
-    public void testFavoriteCounterIsPresentWhenNextProductAddedToFavorite() {
-        basePage.open(PARFUMLIDER_HOMEPAGE);
-        parfumLiderBasePage.addNextProductToFavorite();
-        assertTrue(parfumLiderBasePage.favoriteCounterIsPresent());
-    }
-
-
-    @Test
     public void testFavoriteCounterIsPresentWhenFavoritesIsEmpty() {
         basePage.open(PARFUMLIDER_HOMEPAGE);
         assertFalse(parfumLiderBasePage.favoriteCounterIsPresent());
@@ -44,6 +36,24 @@ public class ParfumLiderBasePageTest extends BaseTest {
         basePage.open(PARFUMLIDER_HOMEPAGE);
         assertFalse(parfumLiderBasePage.cartCounterIsPresent());
     }
+
+    @Test
+    public void testFavoriteCounterIsPresentWhenNextProductAddedToFavorite() {
+        basePage.open(PARFUMLIDER_HOMEPAGE);
+        parfumLiderBasePage.addNextProductToFavorite();
+        assertTrue(parfumLiderBasePage.favoriteCounterIsPresent());
+    }
+
+    @Test
+    public void testAddNextProductToCart() {
+        basePage.open(PARFUMLIDER_HOMEPAGE);
+        parfumLiderBasePage.addNextProductToCart();
+        assertTrue(parfumLiderBasePage.cartCounterIsPresent());
+    }
+
+
+
+
 
 
 }

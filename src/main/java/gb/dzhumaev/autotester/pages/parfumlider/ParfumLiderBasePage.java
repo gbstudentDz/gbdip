@@ -50,6 +50,14 @@ public class ParfumLiderBasePage extends BasePage {
         return this;
     }
 
+    public Boolean favoriteCounterIsPresent() {
+        return driver.findElement(blockFavoriteCounterLocator).isDisplayed();
+    }
+
+    public Boolean cartCounterIsPresent() {
+        return driver.findElement(blockCartCounterLocator).isDisplayed();
+    }
+
     public ParfumLiderBasePage addNextProductToFavorite() {
         String cssSelector = catalogCardLocator.toString()
                 .replace("By.cssSelector: ", "")
@@ -63,22 +71,20 @@ public class ParfumLiderBasePage extends BasePage {
         return this;
     }
 
-    public ParfumLiderBasePage addProductToCart() {
-        driver.findElements(catalogCardLocator)
-                .get(++indexOfProductAddedToCart)
+    public ParfumLiderBasePage addNextProductToCart() {
+        String cssSelector = catalogCardLocator.toString()
+                .replace("By.cssSelector: ", "")
+                + ":nth-child(" + (++indexOfProductAddedToFavorite) + ")";
+        By catalogCardLocatorWithPosinion = By.cssSelector(cssSelector);
+
+        waitElementIsVisibleByLocator(catalogCardLocatorWithPosinion)
                 .findElement(cartIconOnProductCardLocator)
                 .click();
 
         return this;
     }
 
-    public Boolean favoriteCounterIsPresent() {
-        return driver.findElement(blockFavoriteCounterLocator).isDisplayed();
-    }
 
-    public Boolean cartCounterIsPresent() {
-        return driver.findElement(blockCartCounterLocator).isDisplayed();
-    }
 
     public int getFavoriteCount() {
         return Integer.parseInt(driver.findElement(blockFavoriteCounterLocator).getText());
