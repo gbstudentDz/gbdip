@@ -24,28 +24,14 @@ public class ParfumLiderBasePage extends BasePage {
     private final By favoriteIconOnProductCardLocator = By.className("favorite-icon");
     private final By cartIconOnProductCardLocator = By.className("js-buy-block");
 
-    public ParfumLiderBasePage insertSearchQuery(String query) {
-        driver.findElement(inputSearchLocator).clear();
-        driver.findElement(inputSearchLocator).sendKeys(query);
-
-        return this;
-    }
-
-    public ParfumLiderBasePage pressSearchButton() {
-        driver.findElement(btnSearchLocator)
-                .click();
-
-        return this;
-    }
-
     public ParfumLiderBasePage goToFavorite() {
-        waitElementIsVisibleByLocator(blockFavoriteLocator).click();
+        _waitElementIsVisibleByLocator(blockFavoriteLocator).click();
 
         return this;
     }
 
     public ParfumLiderBasePage goToCart() {
-        waitElementIsVisibleByLocator(blockCartLocator).click();
+        _waitElementIsVisibleByLocator(blockCartLocator).click();
 
         return this;
     }
@@ -64,7 +50,7 @@ public class ParfumLiderBasePage extends BasePage {
                 + ":nth-child(" + (++indexOfProductAddedToFavorite) + ")";
         By catalogCardLocatorWithPosinion = By.cssSelector(cssSelector);
 
-        waitElementIsVisibleByLocator(catalogCardLocatorWithPosinion)
+        _waitElementIsVisibleByLocator(catalogCardLocatorWithPosinion)
                 .findElement(favoriteIconOnProductCardLocator)
                 .click();
 
@@ -74,17 +60,15 @@ public class ParfumLiderBasePage extends BasePage {
     public ParfumLiderBasePage addNextProductToCart() {
         String cssSelector = catalogCardLocator.toString()
                 .replace("By.cssSelector: ", "")
-                + ":nth-child(" + (++indexOfProductAddedToFavorite) + ")";
+                + ":nth-child(" + (++indexOfProductAddedToCart) + ")";
         By catalogCardLocatorWithPosinion = By.cssSelector(cssSelector);
 
-        waitElementIsVisibleByLocator(catalogCardLocatorWithPosinion)
+        _waitElementIsVisibleByLocator(catalogCardLocatorWithPosinion)
                 .findElement(cartIconOnProductCardLocator)
                 .click();
 
         return this;
     }
-
-
 
     public int getFavoriteCount() {
         return Integer.parseInt(driver.findElement(blockFavoriteCounterLocator).getText());
@@ -92,5 +76,19 @@ public class ParfumLiderBasePage extends BasePage {
 
     public int getCartCount() {
         return Integer.parseInt(driver.findElement(blockCartCounterLocator).getText());
+    }
+
+    public ParfumLiderBasePage insertSearchQuery(String query) {
+        driver.findElement(inputSearchLocator).clear();
+        driver.findElement(inputSearchLocator).sendKeys(query);
+
+        return this;
+    }
+
+    public ParfumLiderBasePage pressSearchButton() {
+        driver.findElement(btnSearchLocator)
+                .click();
+
+        return this;
     }
 }

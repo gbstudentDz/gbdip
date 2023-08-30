@@ -4,9 +4,7 @@ import gb.dzhumaev.autotester.pages.base.BaseTest;
 import org.testng.annotations.Test;
 
 import static gb.dzhumaev.autotester.constants.Constant.Urls.*;
-import static org.testng.Assert.assertEquals;
-import static org.testng.Assert.assertFalse;
-import static org.testng.Assert.assertTrue;
+import static org.testng.Assert.*;
 
 public class ParfumLiderBasePageTest extends BaseTest {
     ParfumLiderBasePage parfumLiderBasePage = new ParfumLiderBasePage(driver);
@@ -50,10 +48,4 @@ public class ParfumLiderBasePageTest extends BaseTest {
         parfumLiderBasePage.addNextProductToCart();
         assertTrue(parfumLiderBasePage.cartCounterIsPresent());
     }
-
-
-
-
-
-
 }

@@ -4,6 +4,7 @@ import org.openqa.selenium.Point;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.firefox.FirefoxOptions;
 import org.testng.Assert;
 
 import java.time.Duration;
@@ -24,7 +25,8 @@ public class CommonActions {
                 break;
             case "win_firefox":
                 System.setProperty("webdriver.firefox.driver", "src/main/resources/geckodriver.exe");
-                driver = new FirefoxDriver();
+                FirefoxOptions options = new FirefoxOptions();
+                driver = new FirefoxDriver(options);
                 break;
             default:
                 Assert.fail("Incorrect platform or browser name: " + PLATFORM_AND_BROWSER);

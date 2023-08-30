@@ -27,6 +27,11 @@ public class BasePage {
                 .until(ExpectedConditions.visibilityOfElementLocated(locator));
     }
 
+    public WebElement _waitElementIsVisibleByLocator(By locator) {
+        return new WebDriverWait(driver, Duration.ofSeconds(EXPLICIT_WAIT))
+                .until(ExpectedConditions.elementToBeClickable(locator));
+    }
+
     public List<WebElement> waitElementsIsVisibleByLocator(By locator) {
         return new WebDriverWait(driver, Duration.ofSeconds(EXPLICIT_WAIT))
                 .until(ExpectedConditions.visibilityOfAllElementsLocatedBy(locator));

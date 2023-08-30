@@ -3,8 +3,7 @@ package gb.dzhumaev.autotester.pages.base;
 import gb.dzhumaev.autotester.common.CommonActions;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.AfterSuite;
+import org.testng.annotations.*;
 
 import static gb.dzhumaev.autotester.common.Config.CLEAR_COOKIES_AND_STORAGE;
 import static gb.dzhumaev.autotester.common.Config.HOLD_BROWSER_OPEN;
@@ -13,7 +12,12 @@ public class BaseTest {
     protected WebDriver driver = CommonActions.createDriver();
     protected BasePage basePage = new BasePage(driver);
 
-    @AfterClass
+    @BeforeMethod
+    public void refreshPage() {
+        driver.get(driver.getCurrentUrl());
+    }
+
+    @AfterMethod
     public void clearCookiesAndStorage() {
         if (CLEAR_COOKIES_AND_STORAGE) {
             JavascriptExecutor javascriptExecutor = (JavascriptExecutor) driver;
