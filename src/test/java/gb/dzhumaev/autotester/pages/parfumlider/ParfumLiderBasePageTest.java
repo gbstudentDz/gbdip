@@ -27,34 +27,36 @@ public class ParfumLiderBasePageTest extends BaseTest {
     @Test
     public void testFavoriteCounterIsPresentWhenFavoritesIsEmpty() {
         driver.get(PARFUMLIDER_HOMEPAGE);
-        assertFalse(parfumLiderBasePage.favoriteCounterIsPresent());
+        assertFalse(parfumLiderBasePage.favoriteCounterIsDisplayed());
     }
 
     @Test
     public void testCartCounterIsPresentWhenCartIsEmpty() {
         driver.get(PARFUMLIDER_HOMEPAGE);
-        assertFalse(parfumLiderBasePage.cartCounterIsPresent());
+        assertFalse(parfumLiderBasePage.cartCounterIsDisplayed());
     }
 
     @Test
-    public void testFavoriteCounterIsPresentWhenNextProductAddedToFavorite() {
+    public void testFavoriteCounterWhenGoodAddedToFavorite() {
         driver.get(PARFUMLIDER_HOMEPAGE);
-        parfumLiderBasePage.addNextProductToFavorite();
-        assertTrue(parfumLiderBasePage.favoriteCounterIsPresent());
+        parfumLiderBasePage.addGoodToFavorite();
+        assertTrue(parfumLiderBasePage.favoriteCounterIsDisplayed());
     }
 
     @Test
-    public void testAddNextProductToCart() {
+    public void testCartCounterWhenGoodAddedToCart() {
         driver.get(PARFUMLIDER_HOMEPAGE);
-        parfumLiderBasePage.addNextProductToCart();
-        assertTrue(parfumLiderBasePage.cartCounterIsPresent());
+        parfumLiderBasePage.addGoodToCart();
+        assertTrue(parfumLiderBasePage.cartCounterIsDisplayed());
     }
 
-    @Test
-    public void testInsertSearchQuery() {
+    @Test /////////////////////////////////////////////
+    public void testInsertSearchQuery() throws InterruptedException {
+        String query = "Query";
         driver.get(PARFUMLIDER_HOMEPAGE);
-        WebElement element = parfumLiderBasePage.insertSearchQuery("Смартфон");
-        assertEquals(element.getAttribute("value"), "Смартфон");
+        Thread.sleep(2000);
+        WebElement inputElement = parfumLiderBasePage.insertSearchQuery(query);
+        assertEquals(inputElement.getAttribute("value"), query);
     }
 
     //@Test

@@ -24,15 +24,8 @@ public class BasePage {
                 .until(ExpectedConditions.elementToBeClickable(locator));
     }
 
-    public void tryClick(WebElement element) {
-        int attempts = 0;
-        while(attempts < CLICK_ATTEMPTS) {
-            try {
-                element.click();
-                break;
-            } catch(StaleElementReferenceException e) {
-            }
-            attempts++;
-        }
+    public WebElement waitElementIsvisibilityByLocator(By locator) {
+        return new WebDriverWait(driver, Duration.ofSeconds(EXPLICIT_WAIT))
+                .until(ExpectedConditions.visibilityOfElementLocated(locator));
     }
 }

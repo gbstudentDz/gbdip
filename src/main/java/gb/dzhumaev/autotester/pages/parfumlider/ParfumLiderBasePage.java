@@ -1,22 +1,18 @@
 package gb.dzhumaev.autotester.pages.parfumlider;
 
-import gb.dzhumaev.autotester.common.Configuration;
 import gb.dzhumaev.autotester.pages.base.BasePage;
 import org.openqa.selenium.By;
-import org.openqa.selenium.StaleElementReferenceException;
+import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 
-import static gb.dzhumaev.autotester.common.Configuration.CLICK_ATTEMPTS;
 import static gb.dzhumaev.autotester.pages.parfumlider.ParfumLiderBasePageLocators.*;
 
 public class ParfumLiderBasePage extends BasePage {
     public ParfumLiderBasePage(WebDriver driver) {
         super(driver);
     }
-
-    private int indexOfAddedToFavorite = 0;
-    private int indexOfAddedToCart = 0;
 
     public void goToFavorite() {
         waitElementIsClickableByLocator(FAVORITE_LOCATOR).click();
@@ -26,46 +22,39 @@ public class ParfumLiderBasePage extends BasePage {
         waitElementIsClickableByLocator(CART_LOCATOR).click();
     }
 
-    public Boolean favoriteCounterIsPresent() {
-        return driver.findElement(FAVORITE_COUNTER_LOCATOR).isDisplayed();
+    public Boolean favoriteCounterIsDisplayed() {
+        return waitElementIsClickableByLocator(FAVORITE_COUNTER_LOCATOR).isDisplayed();
     }
 
-    public Boolean cartCounterIsPresent() {
-        return driver.findElement(CART_COUNTER_LOCATOR).isDisplayed();
+    public Boolean cartCounterIsDisplayed() {
+        return waitElementIsClickableByLocator(CART_COUNTER_LOCATOR).isDisplayed();
     }
 
-    public void addNextProductToFavorite() {
-        String cssSelector = CARD_LOCATOR.toString()
-                .replace("By.cssSelector: ", "")
-                + ":nth-child(" + (++indexOfAddedToFavorite) + ")";
-        By catalogCardLocatorWithPosinion = By.cssSelector(cssSelector);
-
-        waitElementIsClickableByLocator(catalogCardLocatorWithPosinion)
-                .findElement(FAVORITE_ON_CARD_LOCATOR)
-                .click();
+    public void addGoodToFavorite() {
+        waitElementIsClickableByLocator(FAVORITE_ON_CARD_LOCATOR).click();
     }
 
-    public void addNextProductToCart() {
-        String cssSelector = CARD_LOCATOR.toString()
-                .replace("By.cssSelector: ", "")
-                + ":nth-child(" + (++indexOfAddedToCart) + ")";
-        By catalogCardLocatorWithPosinion = By.cssSelector(cssSelector);
-
-        waitElementIsClickableByLocator(catalogCardLocatorWithPosinion)
-                .findElement(CART_ON_CARD_LOCATOR)
-                .click();
+    public void addGoodToCart() {
+        waitElementIsClickableByLocator(CART_ON_CARD_LOCATOR).click();
+        try {
+            final By ADD_TO_CART_IN_POPUP_LOCATOR = By.cssSelector(".mfp-content .add-to-cart");
+            final By CLOSE_POPUP_LOCATOR = By.cssSelector(".mfp-content .mfp-close");
+            waitElementIsClickableByLocator(ADD_TO_CART_IN_POPUP_LOCATOR).click();
+            waitElementIsClickableByLocator(CLOSE_POPUP_LOCATOR).click();
+        } catch (TimeoutException ignored) {}
     }
 
     public WebElement insertSearchQuery(String query) {
-        WebElement element = waitElementIsClickableByLocator(INPUT_SEARCH_COMPRESSED_LOCATOR);
-        element.click();
-        element = waitElementIsClickableByLocator(INPUT_SEARCH_UNCOMPRESSED_LOCATOR);
-        element.sendKeys(query);
+        waitElementIsClickableByLocator(SEARCH_BLOCK_COLLAPSED_LOCATOR).click();
+        WebElement inputElement = driver.findElement(SEARCH_POPUP_INPUT_LOCATOR);
+                // waitElementIsClickableByLocator(SEARCH_POPUP_INPUT_LOCATOR);
+        inputElement.click();
+        inputElement.sendKeys(query);
 
-        return element;
+        return inputElement;
     }
 
     public void pressSearchButton() {
-        waitElementIsClickableByLocator(BTN_SEARCH_LOCATOR).clear();
+        waitElementIsClickableByLocator(SEARCH_POPUP_SUBMIT_BUTTON_LOCATOR).clear();
     }
 }

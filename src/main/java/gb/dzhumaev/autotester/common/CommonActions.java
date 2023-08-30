@@ -22,7 +22,7 @@ public class CommonActions {
             case "WINDOWS_FIREFOX":
                 System.setProperty("webdriver.firefox.driver", "src/main/resources/geckodriver.exe");
                 FirefoxOptions options = new FirefoxOptions()
-                        .setPageLoadStrategy(PageLoadStrategy.NORMAL);
+                        .setPageLoadStrategy(PageLoadStrategy.EAGER);
                 driver = new FirefoxDriver(options);
                 break;
             default:
