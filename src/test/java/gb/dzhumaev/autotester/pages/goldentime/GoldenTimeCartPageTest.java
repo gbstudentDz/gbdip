@@ -3,8 +3,8 @@ package gb.dzhumaev.autotester.pages.goldentime;
 import gb.dzhumaev.autotester.pages.base.BaseTest;
 import org.testng.annotations.Test;
 
-import static gb.dzhumaev.autotester.pages.goldentime.Urls.PRODUCT_FOR_SALE_1;
-import static gb.dzhumaev.autotester.pages.goldentime.Urls.PRODUCT_FOR_SALE_2;
+import static gb.dzhumaev.autotester.pages.goldentime.Urls.PRODUCT_FOR_SALE_URL_1;
+import static gb.dzhumaev.autotester.pages.goldentime.Urls.PRODUCT_FOR_SALE_URL_2;
 import static org.testng.AssertJUnit.assertEquals;
 
 public class GoldenTimeCartPageTest extends BaseTest {
@@ -13,14 +13,14 @@ public class GoldenTimeCartPageTest extends BaseTest {
 
     @Test
     public void getCartCounterValueTest() {
-        driver.get(PRODUCT_FOR_SALE_1);
+        driver.get(PRODUCT_FOR_SALE_URL_1);
         page.addProductToCart();
         assertEquals("1", page.getCartCounterValue());
     }
 
     @Test
     public void getCartCounterValueWhenSameProductAddedTwoTimesTest() {
-        driver.get(PRODUCT_FOR_SALE_1);
+        driver.get(PRODUCT_FOR_SALE_URL_1);
         page.addProductToCart();
         page.addProductToCart();
         assertEquals("2", page.getCartCounterValue());
@@ -28,9 +28,9 @@ public class GoldenTimeCartPageTest extends BaseTest {
 
     @Test
     public void getCartCounterValueWhenDifferentProductsAddedTwoTimesTest() throws InterruptedException {
-        driver.get(PRODUCT_FOR_SALE_1);
+        driver.get(PRODUCT_FOR_SALE_URL_1);
         page.addProductToCart();
-        driver.get(PRODUCT_FOR_SALE_2);
+        driver.get(PRODUCT_FOR_SALE_URL_2);
         page.addProductToCart();
         Thread.sleep(3000);
         assertEquals("2", page.getCartCounterValue());
@@ -38,7 +38,7 @@ public class GoldenTimeCartPageTest extends BaseTest {
 
     @Test
     public void getBasketItemsCountWhenSameProductAddedTwoTimesTest() {
-        driver.get(PRODUCT_FOR_SALE_1);
+        driver.get(PRODUCT_FOR_SALE_URL_1);
         page.addProductToCart();
         page.addProductToCart();
         page.goToCart();
@@ -47,9 +47,9 @@ public class GoldenTimeCartPageTest extends BaseTest {
 
     @Test
     public void getBasketItemsCountWhenDifferentProductsAddedTwoTimesTest() {
-        driver.get(PRODUCT_FOR_SALE_1);
+        driver.get(PRODUCT_FOR_SALE_URL_1);
         page.addProductToCart();
-        driver.get(PRODUCT_FOR_SALE_2);
+        driver.get(PRODUCT_FOR_SALE_URL_2);
         page.addProductToCart();
         page.goToCart();
         assertEquals(2, page.getBasketItemsCount());
@@ -57,7 +57,7 @@ public class GoldenTimeCartPageTest extends BaseTest {
 
     @Test
     public void getBasketItemAmountFiledValueWhenSameProductAddedTwoTimesTest() {
-        driver.get(PRODUCT_FOR_SALE_1);
+        driver.get(PRODUCT_FOR_SALE_URL_1);
         page.addProductToCart();
         page.addProductToCart();
         page.goToCart();
@@ -66,9 +66,9 @@ public class GoldenTimeCartPageTest extends BaseTest {
 
     @Test
     public void getBasketItemAmountFiledValueWhenDifferentProductsAddedTwoTimesTest() {
-        driver.get(PRODUCT_FOR_SALE_1);
+        driver.get(PRODUCT_FOR_SALE_URL_1);
         page.addProductToCart();
-        driver.get(PRODUCT_FOR_SALE_2);
+        driver.get(PRODUCT_FOR_SALE_URL_2);
         page.addProductToCart();
         page.goToCart();
         assertEquals("1", page.getBasketItemAmountFiledValue());
@@ -76,7 +76,7 @@ public class GoldenTimeCartPageTest extends BaseTest {
 
     @Test
     public void getBasketItemPriceWhenPushedPlus() {
-        driver.get(PRODUCT_FOR_SALE_1);
+        driver.get(PRODUCT_FOR_SALE_URL_1);
         page.addProductToCart();
         page.goToCart();
         Double oldPrice = page.getBasketItemPrice();
@@ -87,7 +87,7 @@ public class GoldenTimeCartPageTest extends BaseTest {
 
     @Test
     public void getFinalPriceWhenPushedPlusTest() throws InterruptedException {
-        driver.get(PRODUCT_FOR_SALE_1);
+        driver.get(PRODUCT_FOR_SALE_URL_1);
         page.addProductToCart();
         page.goToCart();
         Double oldPrice = page.getFinalPrice();
@@ -101,7 +101,7 @@ public class GoldenTimeCartPageTest extends BaseTest {
 
     @Test
     public void getBasketItemPriceWhenPushedMinus() throws InterruptedException {
-        driver.get(PRODUCT_FOR_SALE_1);
+        driver.get(PRODUCT_FOR_SALE_URL_1);
         page.addProductToCart();
         page.goToCart();
         Double price = page.getBasketItemPrice();
@@ -114,7 +114,7 @@ public class GoldenTimeCartPageTest extends BaseTest {
 
     @Test
     public void getFinalPriceWhenPushedMinus() throws InterruptedException {
-        driver.get(PRODUCT_FOR_SALE_1);
+        driver.get(PRODUCT_FOR_SALE_URL_1);
         page.addProductToCart();
         page.goToCart();
         Double price = page.getFinalPrice();
@@ -127,7 +127,7 @@ public class GoldenTimeCartPageTest extends BaseTest {
 
     @Test
     public void getCartCounterValueWhenPushedPlusTest() throws InterruptedException {
-        driver.get(PRODUCT_FOR_SALE_1);
+        driver.get(PRODUCT_FOR_SALE_URL_1);
         page.addProductToCart();
         page.goToCart();
         page.pushPlusOnBasketItem();
@@ -137,7 +137,7 @@ public class GoldenTimeCartPageTest extends BaseTest {
 
     @Test
     public void getCartCounterValueWhenPushedMinusTest() throws InterruptedException {
-        driver.get(PRODUCT_FOR_SALE_1);
+        driver.get(PRODUCT_FOR_SALE_URL_1);
         page.addProductToCart();
         page.goToCart();
         page.pushPlusOnBasketItem();

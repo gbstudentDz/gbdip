@@ -12,17 +12,17 @@ public class GoldenTimeBasePage extends BasePage {
     }
 
     public void goToFavorite() {
-        waitElementIsClickableByLocator(FAVORITE_LOCATOR).click();
+        waitElementIsClickableByLocator(FAVORITE).click();
         System.out.println();
     }
 
     public void goToCart() {
-        waitElementIsClickableByLocator(CART_LOCATOR).click();
+        waitElementIsClickableByLocator(CART).click();
     }
 
     public Boolean favoriteCounterIsDisplayed() {
         try {
-            waitElementIsClickableByLocator(FAVORITE_COUNTER_LOCATOR);
+            waitElementIsClickableByLocator(FAVORITE_COUNTER);
             return true;
         } catch (TimeoutException e) {
             return false;
@@ -31,7 +31,7 @@ public class GoldenTimeBasePage extends BasePage {
 
     public Boolean cartCounterIsDisplayed() {
         try {
-            waitElementIsClickableByLocator(CART_COUNTER_LOCATOR);
+            waitElementIsClickableByLocator(CART_COUNTER);
             return true;
         } catch (TimeoutException e) {
             return false;
@@ -39,12 +39,12 @@ public class GoldenTimeBasePage extends BasePage {
     }
 
     public void addProductToFavorite() {
-        waitElementIsClickableByLocator(ADD_TO_FAVORITE_LOCATOR).click();
+        waitElementIsClickableByLocator(ADD_TO_FAVORITE).click();
 
     }
 
     public void addProductToCart() {
-        waitElementIsClickableByLocator(ADD_TO_CART_LOCATOR).click();
+        waitElementIsClickableByLocator(ADD_TO_CART).click();
     }
 
     public WebElement insertSearchQuery(String query) {

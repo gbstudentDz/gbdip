@@ -2,7 +2,7 @@ package gb.dzhumaev.autotester.pages.goldentime;
 
 import org.openqa.selenium.WebDriver;
 
-import static gb.dzhumaev.autotester.pages.goldentime.GoldenTimeLocators.BasePage.CART_COUNTER_LOCATOR;
+import static gb.dzhumaev.autotester.pages.goldentime.GoldenTimeLocators.BasePage.CART_COUNTER;
 import static gb.dzhumaev.autotester.pages.goldentime.GoldenTimeLocators.CartPage.*;
 
 public class GoldenTimeCartPage extends GoldenTimeBasePage {
@@ -12,11 +12,11 @@ public class GoldenTimeCartPage extends GoldenTimeBasePage {
     }
 
     public String getCartCounterValue() {
-        return waitElementIsClickableByLocator(CART_COUNTER_LOCATOR).getText();
+        return waitElementIsClickableByLocator(CART_COUNTER).getText();
     }
 
     public int getBasketItemsCount() {
-        return driver.findElements(BASKET_ITEM_LOCATOR).size();
+        return driver.findElements(BASKET_ITEM).size();
     }
 
     public String getBasketItemAmountFiledValue() {
