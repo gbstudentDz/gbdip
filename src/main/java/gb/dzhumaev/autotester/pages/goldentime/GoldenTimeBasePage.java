@@ -4,7 +4,7 @@ import gb.dzhumaev.autotester.pages.base.BasePage;
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 
-import static gb.dzhumaev.autotester.pages.goldentime.Locators.GoldenTimeLocators.*;
+import static gb.dzhumaev.autotester.pages.goldentime.GoldenTimeLocators.BasePage.*;
 
 public class GoldenTimeBasePage extends BasePage {
     public GoldenTimeBasePage(WebDriver driver) {
@@ -38,14 +38,12 @@ public class GoldenTimeBasePage extends BasePage {
         }
     }
 
-    public void addGoodToFavorite() {
-        // waitElementIsClickableByLocator(CARD_LOCATOR).click();
+    public void addProductToFavorite() {
         waitElementIsClickableByLocator(ADD_TO_FAVORITE_LOCATOR).click();
 
     }
 
-    public void addGoodToCart() {
-        // waitElementIsClickableByLocator(CARD_LOCATOR).click();
+    public void addProductToCart() {
         waitElementIsClickableByLocator(ADD_TO_CART_LOCATOR).click();
     }
 
