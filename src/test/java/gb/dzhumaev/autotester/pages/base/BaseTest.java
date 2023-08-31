@@ -14,7 +14,6 @@ public class BaseTest {
     protected WebDriver driver = CommonActions.createDriver();
     protected BasePage basePage = new BasePage(driver);
 
-
     @BeforeMethod
     public void switchToNextTab() throws InterruptedException {
         driver.switchTo().newWindow(WindowType.TAB);
@@ -26,7 +25,7 @@ public class BaseTest {
         if (CLEAR_COOKIES) {
             JavascriptExecutor javascriptExecutor = (JavascriptExecutor) driver;
             driver.manage().deleteAllCookies();
-            //javascriptExecutor.executeScript("window.sessionStorage.clear()");
+            javascriptExecutor.executeScript("window.sessionStorage.clear()");
         }
     }
 

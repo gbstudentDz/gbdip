@@ -9,7 +9,6 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 
-import static gb.dzhumaev.autotester.common.Configuration.CLICK_ATTEMPTS;
 import static gb.dzhumaev.autotester.common.Configuration.EXPLICIT_WAIT;
 
 public class BasePage {
@@ -22,10 +21,5 @@ public class BasePage {
     public WebElement waitElementIsClickableByLocator(By locator) {
         return new WebDriverWait(driver, Duration.ofSeconds(EXPLICIT_WAIT))
                 .until(ExpectedConditions.elementToBeClickable(locator));
-    }
-
-    public WebElement waitElementIsvisibilityByLocator(By locator) {
-        return new WebDriverWait(driver, Duration.ofSeconds(EXPLICIT_WAIT))
-                .until(ExpectedConditions.visibilityOfElementLocated(locator));
     }
 }
