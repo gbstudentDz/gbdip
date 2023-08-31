@@ -30,7 +30,6 @@ public class GoldenTimeBasePageTest extends BaseTest {
         assertFalse(page.favoriteCounterIsDisplayed());
     }
 
-    @Test
     public void cartCounterIsDisplayedWhenHasNotFavoriteTest() {
         driver.get(HOMEPAGE_URL);
         assertFalse(page.cartCounterIsDisplayed());
@@ -43,7 +42,6 @@ public class GoldenTimeBasePageTest extends BaseTest {
         assertTrue(page.favoriteCounterIsDisplayed());
     }
 
-    @Test()
     public void cartCounterIsDisplayedWhenHasFavoriteTest() {
         driver.get(PRODUCT_FOR_SALE_URL_1);
         page.addProductToCart();

@@ -3,12 +3,8 @@ package gb.dzhumaev.autotester.pages.base;
 import gb.dzhumaev.autotester.common.CommonActions;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WindowType;
-import org.testng.annotations.AfterMethod;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeMethod;
-
-import static gb.dzhumaev.autotester.common.Configuration.CLEAR_COOKIES;
 
 public class BaseTest {
     protected WebDriver driver = CommonActions.createDriver();
@@ -16,18 +12,17 @@ public class BaseTest {
 
     @BeforeMethod
     public void prepareWindow() throws InterruptedException {
-        driver.switchTo().newWindow(WindowType.TAB);
+        //driver.switchTo().newWindow(WindowType.TAB);
         Thread.sleep(3000);
-
-        if (CLEAR_COOKIES) {
-            JavascriptExecutor javascriptExecutor = (JavascriptExecutor) driver;
-            driver.manage().deleteAllCookies();
-            //javascriptExecutor.executeScript("window.sessionStorage.clear()");
-        }
+        driver.manage().deleteAllCookies();
     }
 
     @AfterSuite(alwaysRun = true)
     public void close() {
+        driver.manage().deleteAllCookies();
+        JavascriptExecutor javascriptExecutor = (JavascriptExecutor) driver;
+        javascriptExecutor.executeScript("window.sessionStorage.clear()");
+        javascriptExecutor.executeScript("window.localStorage.clear()");
         driver.quit();
     }
 }

@@ -75,14 +75,14 @@ public class GoldenTimeCartPageTest extends BaseTest {
     }
 
     @Test
-    public void getBasketItemPriceWhenPushedPlus() {
+    public void getBasketItemPriceWhenPushedPlus() throws InterruptedException {
         driver.get(PRODUCT_FOR_SALE_URL_1);
         page.addProductToCart();
         page.goToCart();
         Double oldPrice = page.getBasketItemPrice();
         page.pushPlusOnBasketItem();
-        Double newPrice = page.getBasketItemPrice();
-        assertEquals(oldPrice * 2, newPrice);
+        Thread.sleep(3000);
+        assertEquals(oldPrice * 2, page.getBasketItemPrice());
     }
 
     @Test
@@ -93,11 +93,8 @@ public class GoldenTimeCartPageTest extends BaseTest {
         Double oldPrice = page.getFinalPrice();
         page.pushPlusOnBasketItem();
         Thread.sleep(5000);
-        Double newPrice = page.getFinalPrice();
-        assertEquals(oldPrice * 2, newPrice);
+        assertEquals(oldPrice * 2, page.getFinalPrice());
     }
-
-
 
     @Test
     public void getBasketItemPriceWhenPushedMinus() throws InterruptedException {
