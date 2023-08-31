@@ -17,59 +17,29 @@ import static org.testng.Assert.*;
 public class GoldenTimeBasePageTest extends BaseTest {
     GoldenTimeBasePage goldenTimeBasePage = new GoldenTimeBasePage(driver);
 
-    @BeforeMethod
-    public void preparePage() throws InterruptedException {
-        Thread.sleep(5000);
-        driver.get(GOLDENTIME_HOMEPAGE_URL);
-        BasePage page = new BasePage(driver);
-
-        while (true) {
-            try {
-                final By CITY_NOTIFICATION_LOCATOR = By.cssSelector(".city-notification--active .city-notification__button--true");
-                page.waitElementIsClickableByLocator(CITY_NOTIFICATION_LOCATOR).click();
-                break;
-            } catch (TimeoutException ignored) {}
-
-            try {
-                final By CITY_PICKER_ACTIVE_LOCATOR = By.cssSelector(".city-picker--active");
-                WebElement cityPickerActiveElement = page.waitElementIsClickableByLocator(CITY_PICKER_ACTIVE_LOCATOR);
-                WebElement parentOfCityPickerActiveElement = (WebElement) ((JavascriptExecutor) driver).executeScript(
-                        "return arguments[0].parentNode;", cityPickerActiveElement);
-                parentOfCityPickerActiveElement.click();
-            } catch (TimeoutException ignored) {}
-            break;
-        }
-
-    }
-
-    @AfterMethod(alwaysRun = true)
-    public void clearCookiesAndStorage() {
-        if (CLEAR_COOKIES) {
-            JavascriptExecutor javascriptExecutor = (JavascriptExecutor) driver;
-            driver.manage().deleteAllCookies();
-            javascriptExecutor.executeScript("window.sessionStorage.clear()");
-        }
-    }
-
     @Test
     public void a_goToFavoriteTest() {
+        driver.get(GOLDENTIME_HOMEPAGE_URL);
         goldenTimeBasePage.goToFavorite();
         assertEquals(driver.getCurrentUrl(), GOLDENTIME_FAVORITE_URL);
     }
 
     @Test
     public void goToCartTest() {
+        driver.get(GOLDENTIME_HOMEPAGE_URL);
         goldenTimeBasePage.goToCart();
         assertEquals(driver.getCurrentUrl(), GOLDENTIME_CART_URL);
     }
 
     @Test
     public void favoriteCounterIsDisplayedWhenHasNotFavoriteTest() {
+        driver.get(GOLDENTIME_HOMEPAGE_URL);
         assertFalse(goldenTimeBasePage.favoriteCounterIsDisplayed());
     }
 
     @Test
     public void cartCounterIsDisplayedWhenHasNotFavoriteTest() {
+        driver.get(GOLDENTIME_HOMEPAGE_URL);
         assertFalse(goldenTimeBasePage.cartCounterIsDisplayed());
     }
 
@@ -89,6 +59,7 @@ public class GoldenTimeBasePageTest extends BaseTest {
 
     @Test
     public void testInsertSearchQuery() {
+        driver.get(GOLDENTIME_HOMEPAGE_URL);
         String query = "Query";
         WebElement inputElement = goldenTimeBasePage.insertSearchQuery(query);
         assertEquals(inputElement.getAttribute("value"), query);
@@ -96,6 +67,7 @@ public class GoldenTimeBasePageTest extends BaseTest {
 
     @Test
     public void testPressSearchButton() throws InterruptedException {
+        driver.get(GOLDENTIME_HOMEPAGE_URL);
         goldenTimeBasePage.activateSearch();
         Thread.sleep(20000);
         assertEquals(driver.getCurrentUrl(), "https://golden-time.ru/catalog/search/?q=");

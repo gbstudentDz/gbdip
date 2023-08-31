@@ -50,6 +50,12 @@ public class GoldenTimeBasePage extends BasePage {
     }
 
     public WebElement insertSearchQuery(String query) {
+        try {
+            final By CITY_NOTIFICATION_LOCATOR =
+                    By.cssSelector(".city-notification--active .city-notification__button--true");
+            waitElementIsClickableByLocator(CITY_NOTIFICATION_LOCATOR).click();
+        } catch (TimeoutException ignored) {}
+
         WebElement element = waitElementIsClickableByLocator(SEARCH_INPUT);
         new Actions(driver).moveToElement(element).click().perform();
         element.sendKeys(query);
@@ -57,7 +63,13 @@ public class GoldenTimeBasePage extends BasePage {
         return element;
     }
 
-    public void activateSearch() {
+    public void activateSearch() throws InterruptedException {
+        try {
+            final By CITY_NOTIFICATION_LOCATOR =
+                    By.cssSelector(".city-notification--active .city-notification__button--true");
+            waitElementIsClickableByLocator(CITY_NOTIFICATION_LOCATOR).click();
+        } catch (TimeoutException ignored) {}
+
         WebElement element = waitElementIsClickableByLocator(SEARCH_INPUT);
         new Actions(driver).moveToElement(element).click().perform();
         element.sendKeys(Keys.ENTER);

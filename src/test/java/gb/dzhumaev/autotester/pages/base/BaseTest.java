@@ -15,12 +15,16 @@ public class BaseTest {
     protected BasePage basePage = new BasePage(driver);
 
     @BeforeMethod
-    public void switchToNextTab() throws InterruptedException {
+    public void prepareWindow() throws InterruptedException {
         driver.switchTo().newWindow(WindowType.TAB);
         Thread.sleep(3000);
+
+        if (CLEAR_COOKIES) {
+            JavascriptExecutor javascriptExecutor = (JavascriptExecutor) driver;
+            driver.manage().deleteAllCookies();
+            //javascriptExecutor.executeScript("window.sessionStorage.clear()");
+        }
     }
-
-
 
     @AfterSuite(alwaysRun = true)
     public void close() {
