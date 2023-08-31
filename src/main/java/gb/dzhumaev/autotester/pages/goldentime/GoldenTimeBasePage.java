@@ -13,6 +13,7 @@ public class GoldenTimeBasePage extends BasePage {
 
     public void goToFavorite() {
         waitElementIsClickableByLocator(FAVORITE_LOCATOR).click();
+        System.out.println();
     }
 
     public void goToCart() {
@@ -38,13 +39,13 @@ public class GoldenTimeBasePage extends BasePage {
     }
 
     public void addGoodToFavorite() {
-        waitElementIsClickableByLocator(CARD_LOCATOR).click();
+        // waitElementIsClickableByLocator(CARD_LOCATOR).click();
         waitElementIsClickableByLocator(ADD_TO_FAVORITE_LOCATOR).click();
 
     }
 
     public void addGoodToCart() {
-        waitElementIsClickableByLocator(CARD_LOCATOR).click();
+        // waitElementIsClickableByLocator(CARD_LOCATOR).click();
         waitElementIsClickableByLocator(ADD_TO_CART_LOCATOR).click();
     }
 

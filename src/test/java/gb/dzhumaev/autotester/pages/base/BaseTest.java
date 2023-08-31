@@ -20,14 +20,7 @@ public class BaseTest {
         Thread.sleep(3000);
     }
 
-    @AfterMethod
-    public void clearCookiesAndStorage() {
-        if (CLEAR_COOKIES) {
-            JavascriptExecutor javascriptExecutor = (JavascriptExecutor) driver;
-            driver.manage().deleteAllCookies();
-            javascriptExecutor.executeScript("window.sessionStorage.clear()");
-        }
-    }
+
 
     @AfterSuite(alwaysRun = true)
     public void close() {
