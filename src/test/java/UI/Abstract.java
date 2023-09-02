@@ -39,7 +39,7 @@ abstract public class Abstract {
         WebDriverManager.chromedriver().setup();
         chromeOptions = new ChromeOptions();
         chromeOptions.setHeadless(true);
-        chromeOptions.addArguments("window-size=1366, 768");
+        chromeOptions.addArguments("window-size=1920, 1080");
         //driver = new RemoteWebDriver(new URL("http://localhost:4445/wd/hub"), chromeOptions);
         driver = new EventFiringWebDriver(new ChromeDriver(chromeOptions));
         driver.manage().window().maximize();
