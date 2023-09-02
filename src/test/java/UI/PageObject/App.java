@@ -1,4 +1,4 @@
-package org.example;
+package UI.PageObject;
 
 /**
  * Hello world!
