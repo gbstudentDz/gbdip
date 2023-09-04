@@ -3,44 +3,51 @@ package orgx;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
-import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.events.EventFiringWebDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-abstract public class TestCongicuration {
-    public static WebDriver driver;
-    public static WebDriverWait wait;
-    public static Actions actions;
+import static orgx.Configuration.BROWSER_NAME;
 
-    public static void setUp() throws Exception {
-        switch (Configuration.BROWSER) {
-            case ("firefox"):
-                WebDriverManager.firefoxdriver().setup();
-                driver = new FirefoxDriver();
-                break;
+abstract public class TestCongicuration {
+    private static EventFiringWebDriver driver;
+    private static WebDriverWait wait;
+    private static Actions actions;
+
+    public static EventFiringWebDriver getDriver() {
+        return driver;
+    }
+
+    public static WebDriverWait getWait() {
+        return wait;
+    }
+
+    public static Actions getActions() {
+        return actions;
+    }
+
+    private static void setUp() throws Exception {
+        switch (BROWSER_NAME) {
             case ("chrome"):
                 WebDriverManager.chromedriver().setup();
-                driver = new ChromeDriver();
-                setUpChrome(driver);
+                driver = new EventFiringWebDriver(new ChromeDriver(configureChrome()));
+                driver.manage().window().maximize();
+                driver.register(new RegisteringTestCongicuration());
                 break;
             default:
-                throw new Exception("bad browser");
+                throw new IllegalArgumentException("Incorrect browser name: " + BROWSER_NAME);
         }
 
         wait = new WebDriverWait(driver, Configuration.EXPLICIT_TIMEOUT);
         actions = new Actions(driver);
     }
-    private static void  setUpChrome(WebDriver driver) {
+    private static ChromeOptions configureChrome() {
         ChromeOptions chromeOptions = new ChromeOptions();
-        chromeOptions.setHeadless(true);
-        chromeOptions.addArguments("window-size=1920, 1080");
+        //chromeOptions.setHeadless(true);
 
-        driver.manage().window().maximize();
-        // driver.register(new Custom());
-
+        return chromeOptions;
     }
 
     @BeforeAll
