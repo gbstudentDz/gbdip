@@ -25,5 +25,17 @@ public class DnsDataForParsing {
         public static final By LOCATOR_PRODUCT_CARD_2 = By.cssSelector(".catalog-product:nth-child(2)");
     }
 
+    public static class ProductCard {
+        public static final By LOCATOR_BUY_BUTTON = By.cssSelector(".buy-btn");
+        public static final By LOCATOR_COMPARE_CHECKBOX = By.cssSelector(".compare-checkbox");
+        public static final By LOCATOR_FAVORIVE_BUTTON = By.cssSelector(".wishlist-btn");
+    }
+
+    public static class ProductDetails {
+        public static final By LOCATOR_BUY_BUTTON = By.cssSelector(".buy-btn");
+        public static final By LOCATOR_COMPARE_CHECKBOX = By.cssSelector(".compare-checkbox");
+        public static final By LOCATOR_FAVORIVE_BUTTON = By.cssSelector(".wishlist-btn");
+    }
+
 
 }
