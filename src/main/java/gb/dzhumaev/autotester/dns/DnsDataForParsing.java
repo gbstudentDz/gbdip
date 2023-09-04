@@ -15,7 +15,7 @@ public class DnsDataForParsing {
         public static final By LOCATOR_COMPARE_COUNTER= By.cssSelector(".compare-link-counter__badge");
         public static final By LOCATOR_FAVORITE_COUNTER= By.cssSelector(".wishlist-link-counter__badge");
         public static final By LOCATOR_CART_COUNTER = By.cssSelector("cart-link-counter__badge");
-        public static final By LOCATOR_SEARCH_INPUT =
+        public static final By LOCATOR_SEARCH_INPUT = By.cssSelector("");
 
     }
 
