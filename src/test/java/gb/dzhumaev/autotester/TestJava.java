@@ -1,4 +1,4 @@
-package orgx;
+package gb.dzhumaev.autotester;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;

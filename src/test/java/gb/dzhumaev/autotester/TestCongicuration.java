@@ -1,4 +1,4 @@
-package orgx;
+package gb.dzhumaev.autotester;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.junit.jupiter.api.AfterAll;
@@ -8,8 +8,6 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.events.EventFiringWebDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
-
-import static orgx.Configuration.BROWSER_NAME;
 
 abstract public class TestCongicuration {
     private static EventFiringWebDriver driver;
@@ -29,7 +27,7 @@ abstract public class TestCongicuration {
     }
 
     private static void setUp() throws Exception {
-        switch (BROWSER_NAME) {
+        switch (Configuration.BROWSER_NAME) {
             case ("chrome"):
                 WebDriverManager.chromedriver().setup();
                 driver = new EventFiringWebDriver(new ChromeDriver(configureChrome()));
@@ -37,7 +35,7 @@ abstract public class TestCongicuration {
                 driver.register(new RegisteringTestCongicuration());
                 break;
             default:
-                throw new IllegalArgumentException("Incorrect browser name: " + BROWSER_NAME);
+                throw new IllegalArgumentException("Incorrect browser name: " + Configuration.BROWSER_NAME);
         }
 
         wait = new WebDriverWait(driver, Configuration.EXPLICIT_TIMEOUT);

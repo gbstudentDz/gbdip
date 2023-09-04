@@ -1,4 +1,4 @@
-package orgx;
+package gb.dzhumaev.autotester;
 
 import io.qameta.allure.Allure;
 import org.openqa.selenium.By;

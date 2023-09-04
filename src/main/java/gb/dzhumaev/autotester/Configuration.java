@@ -1,4 +1,4 @@
-package orgx;
+package gb.dzhumaev.autotester;
 
 import java.time.Duration;
 

@@ -1,4 +1,4 @@
-package orgx;
+package gb.dzhumaev.autotester;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 import io.qameta.allure.Allure;
@@ -7,9 +7,6 @@ import org.junit.jupiter.api.extension.TestWatcher;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.logging.LogType;
-
-import static orgx.Configuration.BROWSER_NAME;
-import static orgx.TestCongicuration.getDriver;
 
 public class TestListener implements TestWatcher {
     @Override
@@ -25,12 +22,12 @@ public class TestListener implements TestWatcher {
     public void doIt() {
         Allure.getLifecycle().addAttachment(
                 "Скриншот", "image/png", "png",
-                ((TakesScreenshot) getDriver()).getScreenshotAs(OutputType.BYTES)
+                ((TakesScreenshot) TestCongicuration.getDriver()).getScreenshotAs(OutputType.BYTES)
         );
 
-        Allure.addAttachment("Логи", String.valueOf(getDriver().manage().logs().get(LogType.BROWSER).getAll()));
+        Allure.addAttachment("Логи", String.valueOf(TestCongicuration.getDriver().manage().logs().get(LogType.BROWSER).getAll()));
         //WebDriverManager.chromedriver().quit();
-        WebDriverManager.getInstance(BROWSER_NAME).quit();
+        WebDriverManager.getInstance(Configuration.BROWSER_NAME).quit();
         TestCongicuration.quit();
     }
 }
