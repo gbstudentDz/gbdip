@@ -19,6 +19,11 @@ public class IzyumDataForParsing {
 
     }
 
+    public static class Popups {
+        public static final String SELECTOR_POPUP_WINDOW = "  .popup-window[style^='display: block'] ";
+        public static final String SELECTOR_POPUP_WINDOW_CLOSE_ICON = SELECTOR_POPUP_WINDOW + " .popup-window-close-icon ";
+    }
+
     public static class Category {
         public static final By LOCATOR_PRODUCT_CARD = By.cssSelector(".product-block>.product-preview");
         public static final By LOCATOR_PRODUCT_CARD_1 = By.cssSelector(".product-block>.product-preview:nth-child(1)");

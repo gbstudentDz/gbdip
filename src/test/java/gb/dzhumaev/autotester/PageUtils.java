@@ -22,26 +22,38 @@ public class PageUtils {
     }
 
     @Step("Клик на элемент")
-    public static void click(By locator) throws InterruptedException {
+    public static WebElement click(By locator) throws InterruptedException {
         wait(locator);
         WebElement element = TestCongicuration.getDriver().findElement(locator);
         TestCongicuration.getActions().moveToElement(element);
         TestCongicuration.getActions().perform();
         element.click();
         sleep(TIMEOUT_AFTER_LOAD_PAGE.toSeconds());
+
+        return element;
     }
 
     @Step("Клик на элемент")
-    public static void click(By locator, long afterDelayOfSeconds) throws InterruptedException {
+    public static WebElement click(By locator, long afterDelayOfSeconds) throws InterruptedException {
         wait(locator);
         WebElement element = TestCongicuration.getDriver().findElement(locator);
         TestCongicuration.getActions().moveToElement(element);
         TestCongicuration.getActions().perform();
         element.click();
         sleep(afterDelayOfSeconds);
+
+        return element;
     }
 
-    /*public static By joinLocators(By... locators) {
+    public static String getText(By locator) {
+        return TestCongicuration.getDriver().findElement(locator).getText();
+    }
+
+    public static String getText(WebElement element) {
+        return element.getText();
+    }
+
+    public static By joinLocators(By... locators) {
         StringBuilder cssSelector = new StringBuilder();
         for (By locator : locators
         ) {
@@ -50,5 +62,5 @@ public class PageUtils {
         }
 
         return By.cssSelector(cssSelector.toString().trim());
-    }*/
+    }
 }

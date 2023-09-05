@@ -9,7 +9,7 @@ import org.junit.jupiter.api.Test;
 import org.testng.Assert;
 
 import static gb.dzhumaev.autotester.PageUtils.*;
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @Epic("Тестирование UI сайта " + IzyumDataForParsing.Base.URL_HOME)
 @Feature("Переходы по основным разделам")

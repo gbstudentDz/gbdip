@@ -43,7 +43,7 @@ abstract public class TestCongicuration {
     }
     private static ChromeOptions configureChrome() {
         ChromeOptions chromeOptions = new ChromeOptions();
-        chromeOptions.setHeadless(true);
+        chromeOptions.setHeadless(false);
         chromeOptions.addArguments("--user-data-dir=" + System.getProperty("java.io.tmpdir"));
 
         return chromeOptions;
