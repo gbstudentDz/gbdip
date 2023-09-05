@@ -1,11 +1,5 @@
 package gb.dzhumaev.autotester;
 
-import gb.dzhumaev.autotester.izyum.IzyumDataForParsing;
-import org.junit.jupiter.api.Test;
-import org.openqa.selenium.By;
-
-import static org.junit.jupiter.api.Assertions.*;
-
 class PageUtilsTest extends TestCongicuration{
 
     /*@Test

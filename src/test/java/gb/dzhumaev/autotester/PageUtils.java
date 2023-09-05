@@ -15,7 +15,11 @@ public class PageUtils {
     }
 
     public static WebElement wait(By selector) {
-        return TestCongicuration.getWait().until(visibilityOfElementLocated(selector));
+        try {
+            return TestCongicuration.getWait().until(visibilityOfElementLocated(selector));
+        } catch (TimeoutException e) {
+            return null;
+        }
     }
 
     private static void sleep(long seconds) throws InterruptedException {
@@ -24,6 +28,18 @@ public class PageUtils {
 
     @Step("Клик на элемент")
     public static WebElement click(String selector) throws InterruptedException {
+        WebElement element = wait(By.cssSelector(selector));
+        TestCongicuration.getActions().moveToElement(element);
+        TestCongicuration.getActions().perform();
+        element.click();
+        sleep(TIMEOUT_AFTER_LOAD_PAGE.toSeconds());
+
+        return element;
+    }
+
+    @Step("Клик на элемент")
+    public static WebElement click(String selector, String selectorParent) throws InterruptedException {
+        selector = selectorParent + selector;
         WebElement element = wait(By.cssSelector(selector));
         TestCongicuration.getActions().moveToElement(element);
         TestCongicuration.getActions().perform();

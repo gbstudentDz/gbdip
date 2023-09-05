@@ -1,6 +1,6 @@
 package gb.dzhumaev.autotester.izyum;
 
-public class IzyumDataForParsing {
+public class IzyumData {
     public static class Base {
         public static final String URL_HOME = "https://izumclub.ru/";
         public static final String URL_COMPARE = URL_HOME + "catalog/compare/";
