@@ -14,17 +14,17 @@ public class PageUtils {
         Thread.sleep(TIMEOUT_AFTER_LOAD_PAGE.toMillis());
     }
 
-    public static void wait(By locator) {
-        TestCongicuration.getWait().until(visibilityOfElementLocated(locator));
+    public static void wait(By selector) {
+        TestCongicuration.getWait().until(visibilityOfElementLocated(selector));
     }
     private static void sleep(long seconds) throws InterruptedException {
         Thread.sleep(seconds * 1000);
     }
 
     @Step("Клик на элемент")
-    public static WebElement click(By locator) throws InterruptedException {
-        wait(locator);
-        WebElement element = TestCongicuration.getDriver().findElement(locator);
+    public static WebElement click(String selector) throws InterruptedException {
+        wait(By.cssSelector(selector));
+        WebElement element = TestCongicuration.getDriver().findElement(By.cssSelector(selector));
         TestCongicuration.getActions().moveToElement(element);
         TestCongicuration.getActions().perform();
         element.click();
@@ -33,34 +33,34 @@ public class PageUtils {
         return element;
     }
 
-    @Step("Клик на элемент")
-    public static WebElement click(By locator, long afterDelayOfSeconds) throws InterruptedException {
-        wait(locator);
-        WebElement element = TestCongicuration.getDriver().findElement(locator);
-        TestCongicuration.getActions().moveToElement(element);
-        TestCongicuration.getActions().perform();
-        element.click();
-        sleep(afterDelayOfSeconds);
+    @Step("Клик на элемент (если существует)")
+    public static WebElement tryClick(String selector) throws InterruptedException {
+        try {
+            wait(By.cssSelector(selector));
+            WebElement element = TestCongicuration.getDriver().findElement(By.cssSelector(selector));
+            TestCongicuration.getActions().moveToElement(element);
+            TestCongicuration.getActions().perform();
+            element.click();
+            sleep(TIMEOUT_AFTER_LOAD_PAGE.toSeconds());
 
-        return element;
+            return element;
+        } catch (TimeoutException e) {
+            return null;
+        }
     }
 
-    public static String getText(By locator) {
-        return TestCongicuration.getDriver().findElement(locator).getText();
+    public static String getText(String selector) {
+        return TestCongicuration.getDriver().findElement(By.cssSelector(selector)).getText();
     }
 
-    public static String getText(WebElement element) {
-        return element.getText();
-    }
-
-    public static By joinLocators(By... locators) {
+    public static String joinSelectors(String... selectors) {
         StringBuilder cssSelector = new StringBuilder();
-        for (By locator : locators
+        
+        for (String selector : selectors
         ) {
-            cssSelector.append(" ")
-                    .append(locator.toString().replace("By.cssSelector: ", ""));
+            cssSelector.append(selector);
         }
 
-        return By.cssSelector(cssSelector.toString().trim());
+        return cssSelector.toString();
     }
 }

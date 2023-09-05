@@ -2,12 +2,20 @@ package gb.dzhumaev.autotester;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.PageLoadStrategy;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.firefox.FirefoxOptions;
+import org.openqa.selenium.firefox.FirefoxProfile;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.events.EventFiringWebDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.AfterTest;
 
 abstract public class TestCongicuration {
     private static EventFiringWebDriver driver;
@@ -34,6 +42,12 @@ abstract public class TestCongicuration {
                 driver.manage().window().maximize();
                 driver.register(new RegisteringTestCongicuration());
                 break;
+            case ("firefox"):
+                WebDriverManager.firefoxdriver().setup();
+                driver = new EventFiringWebDriver(new FirefoxDriver(configureFirefox()));
+                driver.manage().window().maximize();
+                driver.register(new RegisteringTestCongicuration());
+                break;
             default:
                 throw new IllegalArgumentException("Incorrect browser name: " + Configuration.BROWSER_NAME);
         }
@@ -41,12 +55,37 @@ abstract public class TestCongicuration {
         wait = new WebDriverWait(driver, Configuration.EXPLICIT_TIMEOUT);
         actions = new Actions(driver);
     }
+
     private static ChromeOptions configureChrome() {
         ChromeOptions chromeOptions = new ChromeOptions();
         chromeOptions.setHeadless(false);
         chromeOptions.addArguments("--user-data-dir=" + System.getProperty("java.io.tmpdir"));
 
         return chromeOptions;
+    }
+
+    private static FirefoxOptions configureFirefox() {
+        FirefoxProfile profile = new FirefoxProfile();
+        profile.setPreference("browser.cache.disk.enable", false);
+        profile.setPreference("browser.cache.memory.enable", false);
+        profile.setPreference("browser.cache.offline.enable", false);
+        profile.setPreference("network.http.use-cache", false);
+
+        FirefoxOptions options = new FirefoxOptions()
+                .setPageLoadStrategy(PageLoadStrategy.NORMAL);
+        options.setBinary("C:\\Users\\dzhum\\AppData\\Local\\Mozilla Firefox\\firefox.exe");
+        options.setProfile(profile);
+
+        return options;
+    }
+
+    @AfterEach
+    public void clearBrowser() {
+        getDriver().manage().deleteAllCookies();
+        JavascriptExecutor javascriptExecutor = (JavascriptExecutor) driver;
+        javascriptExecutor.executeScript("window.sessionStorage.clear()");
+        javascriptExecutor.executeScript("window.localStorage.clear()");
+        //getDriver().get("https://example.com");
     }
 
     @BeforeAll

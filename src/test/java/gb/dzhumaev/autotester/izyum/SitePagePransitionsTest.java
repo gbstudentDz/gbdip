@@ -48,7 +48,7 @@ public class SitePagePransitionsTest extends TestCongicuration {
     @DisplayName("Открытие страницы сравнения с главной по клику на иконку в шапке")
     public void openCompareFromHomePageTest() throws InterruptedException {
         open(IzyumDataForParsing.Base.URL_HOME);
-        click(IzyumDataForParsing.Base.LOCATOR_COMPARE);
+        click(IzyumDataForParsing.Base.SELECTOR_COMPARE);
         assertEquals(getDriver().getCurrentUrl(), IzyumDataForParsing.Base.URL_COMPARE);
     }
 
@@ -56,7 +56,7 @@ public class SitePagePransitionsTest extends TestCongicuration {
     @DisplayName("Открытие страницы избранного с главной по клику на иконку в шапке")
     public void openFavoriteFromHomePageTest() throws InterruptedException {
         open(IzyumDataForParsing.Base.URL_HOME);
-        click(IzyumDataForParsing.Base.LOCATOR_FAVORITE);
+        click(IzyumDataForParsing.Base.SELECTOR_FAVORITE);
         assertEquals(getDriver().getCurrentUrl(), IzyumDataForParsing.Base.URL_FAVORITE);
     }
 
@@ -64,7 +64,7 @@ public class SitePagePransitionsTest extends TestCongicuration {
     @DisplayName("Открытие страницы корзины с главной по клику на иконку в шапке")
     public void openCartFromHomePageTest() throws InterruptedException {
         open(IzyumDataForParsing.Base.URL_HOME);
-        click(IzyumDataForParsing.Base.LOCATOR_CART);
+        click(IzyumDataForParsing.Base.SELECTOR_CART);
         assertEquals(getDriver().getCurrentUrl(), IzyumDataForParsing.Base.URL_CART);
     }
 
@@ -74,7 +74,7 @@ public class SitePagePransitionsTest extends TestCongicuration {
     @DisplayName("Открытие страницы сравнения со страницы сравнения по клику на иконку в шапке")
     public void openCompareFromCompareTest() throws InterruptedException {
         open(IzyumDataForParsing.Base.URL_COMPARE);
-        click(IzyumDataForParsing.Base.LOCATOR_COMPARE);
+        click(IzyumDataForParsing.Base.SELECTOR_COMPARE);
         assertEquals(getDriver().getCurrentUrl(), IzyumDataForParsing.Base.URL_COMPARE);
     }
 
@@ -82,7 +82,7 @@ public class SitePagePransitionsTest extends TestCongicuration {
     @DisplayName("Открытие страницы избранного со страницы сравнения по клику на иконку в шапке")
     public void openFavoriteFromCompareTest() throws InterruptedException {
         open(IzyumDataForParsing.Base.URL_COMPARE);
-        click(IzyumDataForParsing.Base.LOCATOR_FAVORITE);
+        click(IzyumDataForParsing.Base.SELECTOR_FAVORITE);
         assertEquals(getDriver().getCurrentUrl(), IzyumDataForParsing.Base.URL_FAVORITE);
     }
 
@@ -90,7 +90,7 @@ public class SitePagePransitionsTest extends TestCongicuration {
     @DisplayName("Открытие страницы корзины со страницы сравнения по клику на иконку в шапке")
     public void openCartFromCompareTest() throws InterruptedException {
         open(IzyumDataForParsing.Base.URL_COMPARE);
-        click(IzyumDataForParsing.Base.LOCATOR_CART);
+        click(IzyumDataForParsing.Base.SELECTOR_CART);
         assertEquals(getDriver().getCurrentUrl(), IzyumDataForParsing.Base.URL_CART);
     }
 
@@ -100,7 +100,7 @@ public class SitePagePransitionsTest extends TestCongicuration {
     @DisplayName("Открытие страницы сравнения со страницы избранного по клику на иконку в шапке")
     public void openCompareFromFavoriveTest() throws InterruptedException {
         open(IzyumDataForParsing.Base.URL_FAVORITE);
-        click(IzyumDataForParsing.Base.LOCATOR_COMPARE);
+        click(IzyumDataForParsing.Base.SELECTOR_COMPARE);
         assertEquals(getDriver().getCurrentUrl(), IzyumDataForParsing.Base.URL_COMPARE);
     }
 
@@ -108,7 +108,7 @@ public class SitePagePransitionsTest extends TestCongicuration {
     @DisplayName("Открытие страницы избранного со страницы избранного по клику на иконку в шапке")
     public void openFavoriteFromFavoriveTest() throws InterruptedException {
         open(IzyumDataForParsing.Base.URL_FAVORITE);
-        click(IzyumDataForParsing.Base.LOCATOR_FAVORITE);
+        click(IzyumDataForParsing.Base.SELECTOR_FAVORITE);
         assertEquals(getDriver().getCurrentUrl(), IzyumDataForParsing.Base.URL_FAVORITE);
     }
 
@@ -116,7 +116,7 @@ public class SitePagePransitionsTest extends TestCongicuration {
     @DisplayName("Открытие страницы корзины со страницы избранного по клику на иконку в шапке")
     public void openCartFromFavoriveTest() throws InterruptedException {
         open(IzyumDataForParsing.Base.URL_FAVORITE);
-        click(IzyumDataForParsing.Base.LOCATOR_CART);
+        click(IzyumDataForParsing.Base.SELECTOR_CART);
         assertEquals(getDriver().getCurrentUrl(), IzyumDataForParsing.Base.URL_CART);
     }
 
@@ -126,7 +126,7 @@ public class SitePagePransitionsTest extends TestCongicuration {
     @DisplayName("Открытие страницы сравнения со страницы корзины по клику на иконку в шапке")
     public void openCompareFromCartTest() throws InterruptedException {
         open(IzyumDataForParsing.Base.URL_CART);
-        click(IzyumDataForParsing.Base.LOCATOR_COMPARE);
+        click(IzyumDataForParsing.Base.SELECTOR_COMPARE);
         assertEquals(getDriver().getCurrentUrl(), IzyumDataForParsing.Base.URL_COMPARE);
     }
 
@@ -134,7 +134,7 @@ public class SitePagePransitionsTest extends TestCongicuration {
     @DisplayName("Открытие страницы избранного со страницы корзины по клику на иконку в шапке")
     public void openFavoriteFromCartTest() throws InterruptedException {
         open(IzyumDataForParsing.Base.URL_CART);
-        click(IzyumDataForParsing.Base.LOCATOR_FAVORITE);
+        click(IzyumDataForParsing.Base.SELECTOR_FAVORITE);
         assertEquals(getDriver().getCurrentUrl(), IzyumDataForParsing.Base.URL_FAVORITE);
     }
 
@@ -142,7 +142,7 @@ public class SitePagePransitionsTest extends TestCongicuration {
     @DisplayName("Открытие страницы корзины со страницы корзины по клику на иконку в шапке")
     public void openCartFromCartTest() throws InterruptedException {
         open(IzyumDataForParsing.Base.URL_CART);
-        click(IzyumDataForParsing.Base.LOCATOR_CART);
+        click(IzyumDataForParsing.Base.SELECTOR_CART);
         assertEquals(getDriver().getCurrentUrl(), IzyumDataForParsing.Base.URL_CART);
     }
 }
