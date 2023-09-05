@@ -24,7 +24,18 @@ public class IzyumData {
     }
 
     public static class Category {
-        public static final String SELECTOR_PRODUCTS_BLOCK = " .product-block";
+        public static final String SELECTOR_PAGE_TITLE = " .page_title h1";
+        public static final String SELECTOR_TAGS_BLOCK = " .tags ul";
+        public static final String SELECTOR_TAGS_1 = SELECTOR_TAGS_BLOCK + " li:nth-child(1)>a";
+        public static final String SELECTOR_SORT_BLOCK=  " #sort-and-show-form .left-block .cs-select[tabindex='0']";
+        public static final String SELECTOR_SORT_POPULAR =  SELECTOR_SORT_BLOCK + " li:nth-child(1) span";
+        public static final String SELECTOR_PRICE_UP =  SELECTOR_SORT_BLOCK + " li:nth-child(2) span";
+        public static final String SELECTOR_PRICE_DOWN = SELECTOR_SORT_BLOCK + " li:nth-child(3) span";
+        public static final String SELECTOR_NEW_AHEAD= SELECTOR_SORT_BLOCK + " li:nth-child(4) span";
+        public static final String SELECTOR_PRICE_FILTER_BLOCK = SELECTOR_SORT_BLOCK + " #filter__form .block-with-two-input";
+        public static final String SELECTOR_PRICE_MIN = SELECTOR_PRICE_FILTER_BLOCK + " input#arrFilter_P2_MIN";
+        public static final String SELECTOR_PRICE_MAX = SELECTOR_PRICE_FILTER_BLOCK + " input#arrFilter_P2_MAX";
+        public static final String SELECTOR_PRODUCTS_BLOCK = " #sort-and-show-form .left-block";
         public static final String SELECTOR_PRODUCT_CARD = SELECTOR_PRODUCTS_BLOCK + " .product-preview";
         public static final String SELECTOR_PRODUCT_CARD_1 = SELECTOR_PRODUCTS_BLOCK + " .product-preview:nth-child(1)";
         public static final String SELECTOR_PRODUCT_CARD_2 = SELECTOR_PRODUCTS_BLOCK + " .product-preview:nth-child(2)";
