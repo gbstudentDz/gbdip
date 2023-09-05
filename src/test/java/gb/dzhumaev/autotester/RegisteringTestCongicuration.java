@@ -87,8 +87,8 @@ public class RegisteringTestCongicuration extends TestCongicuration implements W
     @Override
     public void beforeClickOn(WebElement element, WebDriver driver) {
         Allure.step("Клик на элемент: "
-                + " tag = " + element.getTagName()
-                + " class = " + element.getClass()
+                + " tag = " + element.getTagName() + " | "
+                + " class = " + element.getAttribute("class") + " | "
                 + " text = " + element.getText());
     }
 

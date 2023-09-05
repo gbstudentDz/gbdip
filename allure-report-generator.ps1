@@ -1,1 +1,1 @@
-allure generate target/allure-results
+allure generate target/allure-results --clean

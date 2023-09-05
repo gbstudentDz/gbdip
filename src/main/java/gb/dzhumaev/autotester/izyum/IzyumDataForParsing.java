@@ -5,7 +5,7 @@ import org.openqa.selenium.By;
 public class IzyumDataForParsing {
     public static class Base {
         public static final String URL_HOME = "https://izumclub.ru/";
-        public static final String URL_COMPARE = URL_HOME + "catalog/compare";
+        public static final String URL_COMPARE = URL_HOME + "catalog/compare/";
         public static final String URL_FAVORITE = URL_HOME + "favorite/";
         public static final String URL_CART = URL_HOME + "basket/";
         public static final String URL_CATEGORY_SMARTPHONES = URL_HOME + "catalog/smartfony_telefony/";

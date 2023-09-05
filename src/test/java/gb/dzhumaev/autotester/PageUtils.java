@@ -8,22 +8,31 @@ import static org.openqa.selenium.support.ui.ExpectedConditions.visibilityOfElem
 
 public class PageUtils {
 
+    @Step("Открытие страницы {0}")
     public static void open(String url) throws InterruptedException {
         TestCongicuration.getDriver().get(url);
         Thread.sleep(TIMEOUT_AFTER_LOAD_PAGE.toMillis());
     }
 
-    @Step("Ожидание элемента {0}")
     public static void wait(By locator) {
         TestCongicuration.getWait().until(visibilityOfElementLocated(locator));
     }
-
-    private static void sleep(int seconds) throws InterruptedException {
+    private static void sleep(long seconds) throws InterruptedException {
         Thread.sleep(seconds * 1000);
     }
 
     @Step("Клик на элемент")
-    public static void click(By locator, int afterDelayOfSeconds) throws InterruptedException {
+    public static void click(By locator) throws InterruptedException {
+        wait(locator);
+        WebElement element = TestCongicuration.getDriver().findElement(locator);
+        TestCongicuration.getActions().moveToElement(element);
+        TestCongicuration.getActions().perform();
+        element.click();
+        sleep(TIMEOUT_AFTER_LOAD_PAGE.toSeconds());
+    }
+
+    @Step("Клик на элемент")
+    public static void click(By locator, long afterDelayOfSeconds) throws InterruptedException {
         wait(locator);
         WebElement element = TestCongicuration.getDriver().findElement(locator);
         TestCongicuration.getActions().moveToElement(element);
@@ -32,7 +41,7 @@ public class PageUtils {
         sleep(afterDelayOfSeconds);
     }
 
-    public static By joinLocators(By... locators) {
+    /*public static By joinLocators(By... locators) {
         StringBuilder cssSelector = new StringBuilder();
         for (By locator : locators
         ) {
@@ -41,5 +50,5 @@ public class PageUtils {
         }
 
         return By.cssSelector(cssSelector.toString().trim());
-    }
+    }*/
 }
