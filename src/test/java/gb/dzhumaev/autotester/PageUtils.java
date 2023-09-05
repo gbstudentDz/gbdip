@@ -14,17 +14,17 @@ public class PageUtils {
         Thread.sleep(TIMEOUT_AFTER_LOAD_PAGE.toMillis());
     }
 
-    public static void wait(By selector) {
-        TestCongicuration.getWait().until(visibilityOfElementLocated(selector));
+    public static WebElement wait(By selector) {
+        return TestCongicuration.getWait().until(visibilityOfElementLocated(selector));
     }
+
     private static void sleep(long seconds) throws InterruptedException {
         Thread.sleep(seconds * 1000);
     }
 
     @Step("Клик на элемент")
     public static WebElement click(String selector) throws InterruptedException {
-        wait(By.cssSelector(selector));
-        WebElement element = TestCongicuration.getDriver().findElement(By.cssSelector(selector));
+        WebElement element = wait(By.cssSelector(selector));
         TestCongicuration.getActions().moveToElement(element);
         TestCongicuration.getActions().perform();
         element.click();
@@ -36,8 +36,7 @@ public class PageUtils {
     @Step("Клик на элемент (если существует)")
     public static WebElement tryClick(String selector) throws InterruptedException {
         try {
-            wait(By.cssSelector(selector));
-            WebElement element = TestCongicuration.getDriver().findElement(By.cssSelector(selector));
+            WebElement element = wait(By.cssSelector(selector));
             TestCongicuration.getActions().moveToElement(element);
             TestCongicuration.getActions().perform();
             element.click();
@@ -50,7 +49,7 @@ public class PageUtils {
     }
 
     public static String getText(String selector) {
-        return TestCongicuration.getDriver().findElement(By.cssSelector(selector)).getText();
+        return wait(By.cssSelector(selector)).getText();
     }
 
     public static String joinSelectors(String... selectors) {

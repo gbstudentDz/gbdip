@@ -14,8 +14,6 @@ import org.openqa.selenium.firefox.FirefoxProfile;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.events.EventFiringWebDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.AfterTest;
 
 abstract public class TestCongicuration {
     private static EventFiringWebDriver driver;
@@ -35,23 +33,22 @@ abstract public class TestCongicuration {
     }
 
     private static void setUp() throws Exception {
+
+        WebDriverManager.getInstance(Configuration.BROWSER_NAME).setup();
+
         switch (Configuration.BROWSER_NAME) {
-            case ("chrome"):
-                WebDriverManager.chromedriver().setup();
+            case "chrome":
                 driver = new EventFiringWebDriver(new ChromeDriver(configureChrome()));
-                driver.manage().window().maximize();
-                driver.register(new RegisteringTestCongicuration());
                 break;
-            case ("firefox"):
-                WebDriverManager.firefoxdriver().setup();
+            case "firefox":
                 driver = new EventFiringWebDriver(new FirefoxDriver(configureFirefox()));
-                driver.manage().window().maximize();
-                driver.register(new RegisteringTestCongicuration());
                 break;
             default:
                 throw new IllegalArgumentException("Incorrect browser name: " + Configuration.BROWSER_NAME);
         }
 
+        driver.manage().window().maximize();
+        driver.register(new RegisteringTestCongicuration());
         wait = new WebDriverWait(driver, Configuration.EXPLICIT_TIMEOUT);
         actions = new Actions(driver);
     }
@@ -79,15 +76,6 @@ abstract public class TestCongicuration {
         return options;
     }
 
-    @AfterEach
-    public void clearBrowser() {
-        getDriver().manage().deleteAllCookies();
-        JavascriptExecutor javascriptExecutor = (JavascriptExecutor) driver;
-        javascriptExecutor.executeScript("window.sessionStorage.clear()");
-        javascriptExecutor.executeScript("window.localStorage.clear()");
-        //getDriver().get("https://example.com");
-    }
-
     @BeforeAll
     public static void init() throws Exception {
         setUp();
@@ -96,5 +84,14 @@ abstract public class TestCongicuration {
     @AfterAll
     public static void quit() {
         driver.quit();
+    }
+
+    @AfterEach
+    public void clearBrowser() {
+        getDriver().manage().deleteAllCookies();
+        JavascriptExecutor javascriptExecutor = (JavascriptExecutor) driver;
+        javascriptExecutor.executeScript("window.sessionStorage.clear()");
+        javascriptExecutor.executeScript("window.localStorage.clear()");
+        //getDriver().get("https://example.com");
     }
 }

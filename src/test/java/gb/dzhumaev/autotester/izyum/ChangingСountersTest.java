@@ -77,4 +77,18 @@ public class ChangingСountersTest extends TestCongicuration {
         click(selector);
         assertEquals("1", getText(IzyumDataForParsing.Base.SELECTOR_FAVORITE_COUNTER));
     }
+
+    // ---
+
+    @Test
+    @DisplayName("Счетчик корзины увеличивается при нажатии соответствующей иконки в карточке товара")
+    public void t5() throws InterruptedException {
+        getDriver().get(IzyumDataForParsing.Base.URL_CATEGORY_SMARTPHONES);
+        assertEquals("0", getText(IzyumDataForParsing.Base.SELECTOR_CART_COUNTER));
+
+        String selector = joinSelectors(IzyumDataForParsing.Category.SELECTOR_PRODUCT_CARD_1,
+                IzyumDataForParsing.ProductCard.SELECTOR_BUY_BUTTON);
+        click(selector);
+        assertEquals("1", getText(IzyumDataForParsing.Base.SELECTOR_CART_COUNTER));
+    }
 }
