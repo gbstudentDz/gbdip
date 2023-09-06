@@ -14,7 +14,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 @Epic("Тестирование UI сайта " + IzyumData.Base.URL_HOME)
 @Feature("Переходы по основным разделам")
 @ExtendWith(TestListener.class)
-public class SitePagePransitionsTest extends TestCongicuration {
+public class SitePageTransitionsTest extends TestCongicuration {
 
     @Test
     @DisplayName("Открытие главной страницы")
