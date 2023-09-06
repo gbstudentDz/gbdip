@@ -74,7 +74,21 @@ public class PageUtils {
     }
 
     public static String getAttribute(String selector,String attribute) {
-        return wait(By.cssSelector(selector)).getAttribute(attribute);
+        WebElement element = wait(By.cssSelector(selector));
+        return element.getAttribute(attribute);
+    }
+
+    public static WebElement sendKeys(String selector, String text) throws InterruptedException {
+        WebElement input = wait(By.cssSelector(selector));
+        input.click();
+        input.sendKeys(text);
+        sleep(TIMEOUT_AFTER_LOAD_PAGE.toSeconds());
+        return input;
+    }
+
+    public static void sendEnter() throws InterruptedException {
+        TestCongicuration.getActions().sendKeys(Keys.ENTER);
+        sleep(TIMEOUT_AFTER_LOAD_PAGE.toSeconds());
     }
 
     public static String joinSelectors(String... selectors) {

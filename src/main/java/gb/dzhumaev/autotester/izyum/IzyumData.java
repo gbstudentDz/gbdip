@@ -21,6 +21,7 @@ public class IzyumData {
     public static class Popups {
         public static final String SELECTOR_POPUP_WINDOW = "  .popup-window[style^='display: block']";
         public static final String SELECTOR_POPUP_WINDOW_CLOSE_ICON = SELECTOR_POPUP_WINDOW + " .popup-window-close-icon";
+        public static final String SELECTOR_POPUP_SHOW_AFTER_FILTER = " .bx-filter-popup-result a[target]";
     }
 
     public static class Category {
