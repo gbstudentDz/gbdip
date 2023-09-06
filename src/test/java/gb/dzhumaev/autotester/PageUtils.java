@@ -68,6 +68,15 @@ public class PageUtils {
         return wait(By.cssSelector(selector)).getText();
     }
 
+    public static String getText(String selector, String selectorParent) {
+        selector = selectorParent + selector;
+        return wait(By.cssSelector(selector)).getText();
+    }
+
+    public static String getAttribute(String selector,String attribute) {
+        return wait(By.cssSelector(selector)).getAttribute(attribute);
+    }
+
     public static String joinSelectors(String... selectors) {
         StringBuilder cssSelector = new StringBuilder();
         
