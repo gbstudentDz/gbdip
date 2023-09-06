@@ -3,7 +3,7 @@ package gb.dzhumaev.autotester;
 import io.qameta.allure.Step;
 import org.openqa.selenium.*;
 
-import static gb.dzhumaev.autotester.Configuration.TIMEOUT_AFTER_LOAD_PAGE;
+import static gb.dzhumaev.autotester.Configuration.TIMEOUT_AFTER_ACTION;
 import static org.openqa.selenium.support.ui.ExpectedConditions.visibilityOfElementLocated;
 
 public class PageUtils {
@@ -11,7 +11,7 @@ public class PageUtils {
     @Step("Открытие страницы {0}")
     public static void open(String url) throws InterruptedException {
         TestCongicuration.getDriver().get(url);
-        Thread.sleep(TIMEOUT_AFTER_LOAD_PAGE.toMillis());
+        Thread.sleep(TIMEOUT_AFTER_ACTION.toMillis());
     }
 
     public static WebElement wait(By selector) {
@@ -32,7 +32,7 @@ public class PageUtils {
         TestCongicuration.getActions().moveToElement(element);
         TestCongicuration.getActions().perform();
         element.click();
-        sleep(TIMEOUT_AFTER_LOAD_PAGE.toSeconds());
+        sleep(TIMEOUT_AFTER_ACTION.toSeconds());
 
         return element;
     }
@@ -44,7 +44,7 @@ public class PageUtils {
         TestCongicuration.getActions().moveToElement(element);
         TestCongicuration.getActions().perform();
         element.click();
-        sleep(TIMEOUT_AFTER_LOAD_PAGE.toSeconds());
+        sleep(TIMEOUT_AFTER_ACTION.toSeconds());
 
         return element;
     }
@@ -56,7 +56,7 @@ public class PageUtils {
             TestCongicuration.getActions().moveToElement(element);
             TestCongicuration.getActions().perform();
             element.click();
-            sleep(TIMEOUT_AFTER_LOAD_PAGE.toSeconds());
+            sleep(TIMEOUT_AFTER_ACTION.toSeconds());
 
             return element;
         } catch (TimeoutException e) {
@@ -82,13 +82,13 @@ public class PageUtils {
         WebElement input = wait(By.cssSelector(selector));
         input.click();
         input.sendKeys(text);
-        sleep(TIMEOUT_AFTER_LOAD_PAGE.toSeconds());
+        sleep(TIMEOUT_AFTER_ACTION.toSeconds());
         return input;
     }
 
     public static void sendEnter() throws InterruptedException {
         TestCongicuration.getActions().sendKeys(Keys.ENTER);
-        sleep(TIMEOUT_AFTER_LOAD_PAGE.toSeconds());
+        sleep(TIMEOUT_AFTER_ACTION.toSeconds());
     }
 
     public static String joinSelectors(String... selectors) {
