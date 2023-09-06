@@ -92,6 +92,5 @@ abstract public class TestCongicuration {
         JavascriptExecutor javascriptExecutor = (JavascriptExecutor) driver;
         javascriptExecutor.executeScript("window.sessionStorage.clear()");
         javascriptExecutor.executeScript("window.localStorage.clear()");
-        //getDriver().get("https://example.com");
     }
 }

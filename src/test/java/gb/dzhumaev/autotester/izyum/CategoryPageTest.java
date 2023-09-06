@@ -5,8 +5,6 @@ import io.qameta.allure.Epic;
 import io.qameta.allure.Feature;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
 
 import static gb.dzhumaev.autotester.PageUtils.*;
 import static gb.dzhumaev.autotester.izyum.IzyumData.Base.URL_CATEGORY_SMARTPHONES;

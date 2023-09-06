@@ -90,15 +90,4 @@ public class PageUtils {
         TestCongicuration.getActions().sendKeys(Keys.ENTER);
         sleep(TIMEOUT_AFTER_ACTION.toSeconds());
     }
-
-    public static String joinSelectors(String... selectors) {
-        StringBuilder cssSelector = new StringBuilder();
-        
-        for (String selector : selectors
-        ) {
-            cssSelector.append(selector);
-        }
-
-        return cssSelector.toString();
-    }
 }
