@@ -1,10 +1,12 @@
 package gb.dzhumaev.autotester.izyum;
 
 import gb.dzhumaev.autotester.TestCongicuration;
+import gb.dzhumaev.autotester.TestListener;
 import io.qameta.allure.Epic;
 import io.qameta.allure.Feature;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 
 import static gb.dzhumaev.autotester.PageUtils.*;
 import static gb.dzhumaev.autotester.izyum.IzyumData.Base.URL_CATEGORY_SMARTPHONES;
@@ -16,6 +18,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @Epic("Тестирование UI сайта " + IzyumData.Base.URL_HOME)
 @Feature("Тестирование страницы категории")
+@ExtendWith(TestListener.class)
 public class CategoryPageTest extends TestCongicuration {
 
     @Test

@@ -2,10 +2,12 @@ package gb.dzhumaev.autotester.izyum;
 
 import gb.dzhumaev.autotester.PageUtils;
 import gb.dzhumaev.autotester.TestCongicuration;
+import gb.dzhumaev.autotester.TestListener;
 import io.qameta.allure.Epic;
 import io.qameta.allure.Feature;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
@@ -14,6 +16,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @Epic("Тестирование UI сайта " + IzyumData.Base.URL_HOME)
 @Feature("Изменение счетчиков в шапке для разделов: сравнение, избранное, корзина")
+@ExtendWith(TestListener.class)
 public class ChangingСountersTest extends TestCongicuration {
 
     @Test

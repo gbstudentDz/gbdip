@@ -11,6 +11,10 @@ import org.openqa.selenium.logging.LogType;
 public class TestListener implements TestWatcher {
     @Override
     public void testFailed(ExtensionContext context, Throwable cause) {
+        Allure.getLifecycle().addAttachment(
+                "Скриншот", "image/png", "png",
+                ((TakesScreenshot) TestCongicuration.getDriver()).getScreenshotAs(OutputType.BYTES)
+        );
         doIt();
     }
 
@@ -20,13 +24,7 @@ public class TestListener implements TestWatcher {
     }
 
     public void doIt() {
-        Allure.getLifecycle().addAttachment(
-                "Скриншот", "image/png", "png",
-                ((TakesScreenshot) TestCongicuration.getDriver()).getScreenshotAs(OutputType.BYTES)
-        );
-
         Allure.addAttachment("Логи", String.valueOf(TestCongicuration.getDriver().manage().logs().get(LogType.BROWSER).getAll()));
-        //WebDriverManager.chromedriver().quit();
         WebDriverManager.getInstance(Configuration.BROWSER_NAME).quit();
         TestCongicuration.quit();
     }
