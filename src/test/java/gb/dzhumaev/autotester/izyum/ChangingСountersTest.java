@@ -46,7 +46,6 @@ public class ChangingСountersTest extends TestCongicuration {
         assertEquals("1", getText(IzyumData.Base.SELECTOR_COMPARE_COUNTER));
     }
 
-    // ---
 
     @Test
     @DisplayName("Счетчик избранного увеличивается при нажатии соответствующей иконки в карточке товара")
@@ -74,8 +73,6 @@ public class ChangingСountersTest extends TestCongicuration {
         click(IzyumData.ProductCard.SELECTOR_FAVORIVE_BUTTON, IzyumData.Category.SELECTOR_PRODUCT_CARD_2);
         assertEquals("1", getText(IzyumData.Base.SELECTOR_FAVORITE_COUNTER));
     }
-
-    // ---
 
     @Test
     @DisplayName("Счетчик корзины увеличивается при нажатии соответствующей иконки в карточке товара")
