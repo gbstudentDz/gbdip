@@ -32,7 +32,7 @@ abstract public class TestCongicuration {
         return actions;
     }
 
-    private static void setUp() throws Exception {
+    private static void setUp() {
 
         WebDriverManager.getInstance(Configuration.BROWSER_NAME).setup();
 
