@@ -35,10 +35,10 @@ public class IzyumData {
         public static final String SELECTOR_PRICE_FILTER_BLOCK = SELECTOR_SORT_BLOCK + " #filter__form .block-with-two-input";
         public static final String SELECTOR_PRICE_MIN = SELECTOR_PRICE_FILTER_BLOCK + " input#arrFilter_P2_MIN";
         public static final String SELECTOR_PRICE_MAX = SELECTOR_PRICE_FILTER_BLOCK + " input#arrFilter_P2_MAX";
-        public static final String SELECTOR_PRODUCTS_BLOCK = " #sort-and-show-form .left-block";
+        public static final String SELECTOR_PRODUCTS_BLOCK = " .product-block";
         public static final String SELECTOR_PRODUCT_CARD = SELECTOR_PRODUCTS_BLOCK + " .product-preview";
-        public static final String SELECTOR_PRODUCT_CARD_1 = SELECTOR_PRODUCTS_BLOCK + " .product-preview:nth-child(1)";
-        public static final String SELECTOR_PRODUCT_CARD_2 = SELECTOR_PRODUCTS_BLOCK + " .product-preview:nth-child(2)";
+        public static final String SELECTOR_PRODUCT_CARD_1 = SELECTOR_PRODUCT_CARD + ":nth-child(1)";
+        public static final String SELECTOR_PRODUCT_CARD_2 = SELECTOR_PRODUCT_CARD + ":nth-child(2)";
     }
 
     public static class ProductCard {
