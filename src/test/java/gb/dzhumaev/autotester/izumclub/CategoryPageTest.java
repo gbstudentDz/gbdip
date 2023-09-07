@@ -25,11 +25,11 @@ public class CategoryPageTest extends TestCongicuration {
     public void t1() throws InterruptedException {
         getDriver().get(URL_CATEGORY_SMARTPHONES);
 
-        click(SORT_BLOCK);
-        click(SORT_PRICE_START_WITH_MIN);
+        click(SORT_BLOCK[0]);
+        click(SORT_PRICE_START_WITH_MIN[0]);
 
-        double priceMinInFilrer = extractDouble(getAttribute(PRICE_MIN_IN_FILTER, "placeholder"));
-        double priceOnFirstCard = extractDouble(getText(PRICE_ON_CARD, CARD_1));
+        double priceMinInFilrer = extractDouble(getAttribute(PRICE_MIN_IN_FILTER[0], "placeholder"));
+        double priceOnFirstCard = extractDouble(getText(PRICE_ON_CARD[0], CARD_1[0]));
         assertEquals(priceMinInFilrer, priceOnFirstCard);
     }
 
@@ -38,11 +38,11 @@ public class CategoryPageTest extends TestCongicuration {
     public void t2() throws InterruptedException {
         getDriver().get(URL_CATEGORY_SMARTPHONES);
 
-        click(SORT_BLOCK);
-        click(SORT_PRICE_START_WITH_MAX);
+        click(SORT_BLOCK[0]);
+        click(SORT_PRICE_START_WITH_MAX[0]);
 
-        double priceMaxInFilrer = extractDouble(getAttribute(PRICE_MAX_IN_FILTER, "placeholder"));
-        double priceOnFirstCard = extractDouble(getText(PRICE_ON_CARD, CARD_1));
+        double priceMaxInFilrer = extractDouble(getAttribute(PRICE_MAX_IN_FILTER[0], "placeholder"));
+        double priceOnFirstCard = extractDouble(getText(PRICE_ON_CARD[0], CARD_1[0]));
         assertEquals(priceMaxInFilrer, priceOnFirstCard);
     }
 
@@ -51,9 +51,9 @@ public class CategoryPageTest extends TestCongicuration {
     public void t3() throws InterruptedException {
         getDriver().get(URL_CATEGORY_SMARTPHONES);
 
-        String tagValue = getText(TAG_1_ON_HEADER);
-        click(TAG_1_ON_HEADER);
-        String pageTitle = getText(TITLE_CATEGORY_PAGE);
+        String tagValue = getText(TAG_1_ON_HEADER[0]);
+        click(TAG_1_ON_HEADER[0]);
+        String pageTitle = getText(TITLE_CATEGORY_PAGE[0]);
         assertTrue(pageTitle.contains(tagValue));
     }
 
@@ -62,18 +62,18 @@ public class CategoryPageTest extends TestCongicuration {
     public void t4() throws InterruptedException {
         getDriver().get(URL_CATEGORY_SMARTPHONES);
 
-        double minPrice = extractDouble(getAttribute(PRICE_MIN_IN_FILTER, "placeholder"));
-        double maxPrice = extractDouble(getAttribute(PRICE_MAX_IN_FILTER, "placeholder"));
+        double minPrice = extractDouble(getAttribute(PRICE_MIN_IN_FILTER[0], "placeholder"));
+        double maxPrice = extractDouble(getAttribute(PRICE_MAX_IN_FILTER[0], "placeholder"));
         double averagePrice = (minPrice + maxPrice) / 2;
 
-        click(SORT_BLOCK);
-        click(SORT_PRICE_START_WITH_MIN);
+        click(SORT_BLOCK[0]);
+        click(SORT_PRICE_START_WITH_MIN[0]);
 
-        sendKeys(PRICE_MIN_IN_FILTER, String.valueOf(averagePrice));
+        sendKeys(PRICE_MIN_IN_FILTER[0], String.valueOf(averagePrice));
         sendEnter();
-        click(POPUP_SHOW_AFTER_FILTER);
+        click(POPUP_SHOW_AFTER_FILTER[0]);
 
-        double priceOnFirstProduct = extractDouble(getText(PRICE_ON_CARD, CARD_1));
+        double priceOnFirstProduct = extractDouble(getText(PRICE_ON_CARD[0], CARD_1[0]));
 
         assertTrue(priceOnFirstProduct >= averagePrice);
     }
@@ -83,17 +83,17 @@ public class CategoryPageTest extends TestCongicuration {
     public void t5() throws InterruptedException {
         getDriver().get(URL_CATEGORY_SMARTPHONES);
 
-        double minPrice = extractDouble(getAttribute(PRICE_MIN_IN_FILTER, "placeholder"));
-        double maxPrice = extractDouble(getAttribute(PRICE_MAX_IN_FILTER, "placeholder"));
+        double minPrice = extractDouble(getAttribute(PRICE_MIN_IN_FILTER[0], "placeholder"));
+        double maxPrice = extractDouble(getAttribute(PRICE_MAX_IN_FILTER[0], "placeholder"));
         double averagePrice = (minPrice + maxPrice) / 2;
-        click(SORT_BLOCK);
-        click(SORT_PRICE_START_WITH_MAX);
+        click(SORT_BLOCK[0]);
+        click(SORT_PRICE_START_WITH_MAX[0]);
 
-        sendKeys(PRICE_MAX_IN_FILTER, String.valueOf(averagePrice));
+        sendKeys(PRICE_MAX_IN_FILTER[0], String.valueOf(averagePrice));
         sendEnter();
-        click(POPUP_SHOW_AFTER_FILTER);
+        click(POPUP_SHOW_AFTER_FILTER[0]);
 
-        double priceOnFirstProduct = extractDouble(getText(PRICE_ON_CARD, CARD_1));
+        double priceOnFirstProduct = extractDouble(getText(PRICE_ON_CARD[0], CARD_1[0]));
 
         assertTrue(priceOnFirstProduct <= averagePrice);
     }
@@ -103,24 +103,24 @@ public class CategoryPageTest extends TestCongicuration {
     public void t6() throws InterruptedException {
         getDriver().get(URL_CATEGORY_SMARTPHONES);
 
-        double minPrice = extractDouble(getAttribute(PRICE_MIN_IN_FILTER, "placeholder"));
-        double maxPrice = extractDouble(getAttribute(PRICE_MAX_IN_FILTER, "placeholder"));
+        double minPrice = extractDouble(getAttribute(PRICE_MIN_IN_FILTER[0], "placeholder"));
+        double maxPrice = extractDouble(getAttribute(PRICE_MAX_IN_FILTER[0], "placeholder"));
         double averagePrice = (minPrice + maxPrice) / 2;
         minPrice = (minPrice + averagePrice) / 2;
         maxPrice = (averagePrice + maxPrice) / 2;
 
-        sendKeys(PRICE_MIN_IN_FILTER, String.valueOf(minPrice));
-        sendKeys(PRICE_MAX_IN_FILTER, String.valueOf(maxPrice));
-        click(POPUP_SHOW_AFTER_FILTER);
+        sendKeys(PRICE_MIN_IN_FILTER[0], String.valueOf(minPrice));
+        sendKeys(PRICE_MAX_IN_FILTER[0], String.valueOf(maxPrice));
+        click(POPUP_SHOW_AFTER_FILTER[0]);
 
-        click(SORT_BLOCK);
-        click(SORT_PRICE_START_WITH_MIN);
-        double priceOnFirstCard = extractDouble(getText(PRICE_ON_CARD, CARD_1));
+        click(SORT_BLOCK[0]);
+        click(SORT_PRICE_START_WITH_MIN[0]);
+        double priceOnFirstCard = extractDouble(getText(PRICE_ON_CARD[0], CARD_1[0]));
         assertTrue(priceOnFirstCard >= minPrice);
 
-        click(SORT_BLOCK);
-        click(SORT_PRICE_START_WITH_MAX);
-        priceOnFirstCard = extractDouble(getText(PRICE_ON_CARD, CARD_1));
+        click(SORT_BLOCK[0]);
+        click(SORT_PRICE_START_WITH_MAX[0]);
+        priceOnFirstCard = extractDouble(getText(PRICE_ON_CARD[0], CARD_1[0]));
         assertTrue(priceOnFirstCard <= maxPrice);
     }
 }
