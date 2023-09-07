@@ -26,6 +26,6 @@ public class TestListener implements TestWatcher {
     public void doIt() {
         Allure.addAttachment("Логи", String.valueOf(TestCongicuration.getDriver().manage().logs().get(LogType.BROWSER).getAll()));
         WebDriverManager.getInstance(Configuration.BROWSER_NAME).quit();
-        TestCongicuration.quit();
+        //TestCongicuration.quit();
     }
 }
