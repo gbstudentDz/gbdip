@@ -12,6 +12,8 @@ import static org.openqa.selenium.support.ui.ExpectedConditions.visibilityOfElem
 
 public class PageUtils {
 
+    private static String lastClickedElementName = "";
+
     @Step("Открытие страницы {0}")
     public static void open(String url) throws InterruptedException {
         TestCongicuration.getDriver().get(url);
@@ -30,38 +32,38 @@ public class PageUtils {
         Thread.sleep(seconds * 1000);
     }
 
-    @Step("Клик на элемент")
-    public static WebElement click(String selector) throws InterruptedException {
-        WebElement element = wait(By.cssSelector(selector));
+    @Step
+    public static WebElement click(SelectorInfo si) throws InterruptedException {
+        WebElement element = wait(By.cssSelector(si.s()));
         TestCongicuration.getActions().moveToElement(element);
         TestCongicuration.getActions().perform();
+        lastClickedElementName = si.n();
         element.click();
         sleep(TIMEOUT_AFTER_ACTION.toSeconds());
-
         return element;
     }
 
-    @Step("Клик на элемент")
-    public static WebElement click(String selector, String selectorParent) throws InterruptedException {
-        selector = selectorParent + selector;
-        WebElement element = wait(By.cssSelector(selector));
+    @Step
+    public static WebElement click(SelectorInfo si, SelectorInfo siP) throws InterruptedException {
+        si = new SelectorInfo(siP.s() + si.s(), si.n());// selectorParent + si.s();
+        WebElement element = wait(By.cssSelector(si.s()));
         TestCongicuration.getActions().moveToElement(element);
         TestCongicuration.getActions().perform();
+        lastClickedElementName = si.n();
         element.click();
         sleep(TIMEOUT_AFTER_ACTION.toSeconds());
-
         return element;
     }
 
-    @Step("Клик на элемент (если существует)")
-    public static WebElement tryClick(String selector) throws InterruptedException {
+    @Step
+    public static WebElement tryClick(SelectorInfo si) throws InterruptedException {
         try {
-            WebElement element = wait(By.cssSelector(selector));
+            WebElement element = wait(By.cssSelector(si.s()));
             TestCongicuration.getActions().moveToElement(element);
             TestCongicuration.getActions().perform();
+            lastClickedElementName = si.n();
             element.click();
             sleep(TIMEOUT_AFTER_ACTION.toSeconds());
-
             return element;
         } catch (TimeoutException e) {
             return null;
@@ -117,5 +119,9 @@ public class PageUtils {
     }
 
     public static void t() {
+    }
+
+    public static String getLastClickedElementName() {
+        return lastClickedElementName;
     }
 }

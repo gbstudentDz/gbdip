@@ -15,17 +15,13 @@ public class TestListener implements TestWatcher {
                 "Скриншот", "image/png", "png",
                 ((TakesScreenshot) TestCongicuration.getDriver()).getScreenshotAs(OutputType.BYTES)
         );
-        doIt();
+        Allure.addAttachment("Логи", String.valueOf(TestCongicuration.getDriver().manage().logs().get(LogType.BROWSER).getAll()));
+        WebDriverManager.getInstance(Configuration.BROWSER_NAME).quit();
     }
 
     @Override
     public void testSuccessful(ExtensionContext context) {
-        doIt();
-    }
-
-    public void doIt() {
         Allure.addAttachment("Логи", String.valueOf(TestCongicuration.getDriver().manage().logs().get(LogType.BROWSER).getAll()));
         WebDriverManager.getInstance(Configuration.BROWSER_NAME).quit();
-        //TestCongicuration.quit();
     }
 }
