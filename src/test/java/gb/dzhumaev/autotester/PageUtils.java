@@ -1,21 +1,20 @@
 package gb.dzhumaev.autotester;
 
-import freemarker.template.TemplateHashModelEx2;
-import io.qameta.allure.Step;
-import org.apache.commons.lang3.tuple.Pair;
 import org.openqa.selenium.*;
 
-import java.util.ArrayList;
 
 import static gb.dzhumaev.autotester.Configuration.TIMEOUT_AFTER_ACTION;
 import static org.openqa.selenium.support.ui.ExpectedConditions.visibilityOfElementLocated;
 
 public class PageUtils {
 
-    private static String lastClickedElementName = "";
+    private static String lastInvolvedElementName;
+    private static String lastOpenedUrl;
+    private static String lastInsertedText;
 
-    @Step("Открытие страницы {0}")
+    //@Step("Открытие страницы {0}")
     public static void open(String url) throws InterruptedException {
+        lastOpenedUrl = url;
         TestCongicuration.getDriver().get(url);
         Thread.sleep(TIMEOUT_AFTER_ACTION.toMillis());
     }
@@ -32,36 +31,36 @@ public class PageUtils {
         Thread.sleep(seconds * 1000);
     }
 
-    @Step
+    //@Step
     public static WebElement click(SelectorInfo si) throws InterruptedException {
         WebElement element = wait(By.cssSelector(si.s()));
         TestCongicuration.getActions().moveToElement(element);
         TestCongicuration.getActions().perform();
-        lastClickedElementName = si.n();
+        lastInvolvedElementName = si.n();
         element.click();
         sleep(TIMEOUT_AFTER_ACTION.toSeconds());
         return element;
     }
 
-    @Step
+    //@Step
     public static WebElement click(SelectorInfo si, SelectorInfo siP) throws InterruptedException {
         si = new SelectorInfo(siP.s() + si.s(), si.n());// selectorParent + si.s();
         WebElement element = wait(By.cssSelector(si.s()));
         TestCongicuration.getActions().moveToElement(element);
         TestCongicuration.getActions().perform();
-        lastClickedElementName = si.n();
+        lastInvolvedElementName = si.n();
         element.click();
         sleep(TIMEOUT_AFTER_ACTION.toSeconds());
         return element;
     }
 
-    @Step
+    //@Step
     public static WebElement tryClick(SelectorInfo si) throws InterruptedException {
         try {
             WebElement element = wait(By.cssSelector(si.s()));
             TestCongicuration.getActions().moveToElement(element);
             TestCongicuration.getActions().perform();
-            lastClickedElementName = si.n();
+            lastInvolvedElementName = si.n();
             element.click();
             sleep(TIMEOUT_AFTER_ACTION.toSeconds());
             return element;
@@ -84,9 +83,11 @@ public class PageUtils {
         return element.getAttribute(attribute);
     }
 
-    public static WebElement sendKeys(String selector, String text) throws InterruptedException {
-        WebElement input = wait(By.cssSelector(selector));
+    public static WebElement sendKeys(SelectorInfo si, String text) throws InterruptedException {
+        WebElement input = wait(By.cssSelector(si.s()));
+        lastInvolvedElementName = si.n();
         input.click();
+        lastInsertedText = text;
         input.sendKeys(text);
         sleep(TIMEOUT_AFTER_ACTION.toSeconds());
         return input;
@@ -118,10 +119,17 @@ public class PageUtils {
         return Double.parseDouble(sb.toString());
     }
 
-    public static void t() {
+    //
+
+    public static String getLastInvolvedElementName() {
+        return lastInvolvedElementName;
     }
 
-    public static String getLastClickedElementName() {
-        return lastClickedElementName;
+    public static String getLastOpenedUrl() {
+        return lastOpenedUrl;
+    }
+
+    public static String getLastInsertedText() {
+        return lastInsertedText;
     }
 }

@@ -23,7 +23,7 @@ public class CategoryPageTest extends TestCongicuration {
     @Test
     @DisplayName("Плейсхолдер фильтра минимальной цены соответствует самой низкой цене продукта")
     public void t1() throws InterruptedException {
-        getDriver().get(URL_CATEGORY_SMARTPHONES);
+        open(URL_CATEGORY_SMARTPHONES);
 
         click(SORT_BLOCK);
         click(SORT_PRICE_START_WITH_MIN);
@@ -36,7 +36,7 @@ public class CategoryPageTest extends TestCongicuration {
     @Test
     @DisplayName("Плейсхолдер фильтра максимальной цены соответствует самой высокой цене продукта")
     public void t2() throws InterruptedException {
-        getDriver().get(URL_CATEGORY_SMARTPHONES);
+        open(URL_CATEGORY_SMARTPHONES);
 
         click(SORT_BLOCK);
         click(SORT_PRICE_START_WITH_MAX);
@@ -49,7 +49,7 @@ public class CategoryPageTest extends TestCongicuration {
     @Test
     @DisplayName("При переходе по тегу заголовок категории содержит тег")
     public void t3() throws InterruptedException {
-        getDriver().get(URL_CATEGORY_SMARTPHONES);
+        open(URL_CATEGORY_SMARTPHONES);
 
         String tagValue = getText(TAG_1_ON_HEADER.s());
         click(TAG_1_ON_HEADER);
@@ -60,7 +60,7 @@ public class CategoryPageTest extends TestCongicuration {
     @Test
     @DisplayName("Проверка фильтра минимальной цены")
     public void t4() throws InterruptedException {
-        getDriver().get(URL_CATEGORY_SMARTPHONES);
+        open(URL_CATEGORY_SMARTPHONES);
 
         double minPrice = extractDouble(getAttribute(PRICE_MIN_IN_FILTER.s(), "placeholder"));
         double maxPrice = extractDouble(getAttribute(PRICE_MAX_IN_FILTER.s(), "placeholder"));
@@ -69,7 +69,7 @@ public class CategoryPageTest extends TestCongicuration {
         click(SORT_BLOCK);
         click(SORT_PRICE_START_WITH_MIN);
 
-        sendKeys(PRICE_MIN_IN_FILTER.s(), String.valueOf(averagePrice));
+        sendKeys(PRICE_MIN_IN_FILTER, String.valueOf(averagePrice));
         sendEnter();
         click(POPUP_SHOW_AFTER_FILTER);
 
@@ -81,7 +81,7 @@ public class CategoryPageTest extends TestCongicuration {
     @Test
     @DisplayName("Проверка фильтра максимальной цены")
     public void t5() throws InterruptedException {
-        getDriver().get(URL_CATEGORY_SMARTPHONES);
+        open(URL_CATEGORY_SMARTPHONES);
 
         double minPrice = extractDouble(getAttribute(PRICE_MIN_IN_FILTER.s(), "placeholder"));
         double maxPrice = extractDouble(getAttribute(PRICE_MAX_IN_FILTER.s(), "placeholder"));
@@ -89,7 +89,7 @@ public class CategoryPageTest extends TestCongicuration {
         click(SORT_BLOCK);
         click(SORT_PRICE_START_WITH_MAX);
 
-        sendKeys(PRICE_MAX_IN_FILTER.s(), String.valueOf(averagePrice));
+        sendKeys(PRICE_MAX_IN_FILTER, String.valueOf(averagePrice));
         sendEnter();
         click(POPUP_SHOW_AFTER_FILTER);
 
@@ -101,7 +101,7 @@ public class CategoryPageTest extends TestCongicuration {
     @Test
     @DisplayName("Проверка фильтра максимальной цены")
     public void t6() throws InterruptedException {
-        getDriver().get(URL_CATEGORY_SMARTPHONES);
+        open(URL_CATEGORY_SMARTPHONES);
 
         double minPrice = extractDouble(getAttribute(PRICE_MIN_IN_FILTER.s(), "placeholder"));
         double maxPrice = extractDouble(getAttribute(PRICE_MAX_IN_FILTER.s(), "placeholder"));
@@ -109,8 +109,8 @@ public class CategoryPageTest extends TestCongicuration {
         minPrice = (minPrice + averagePrice) / 2;
         maxPrice = (averagePrice + maxPrice) / 2;
 
-        sendKeys(PRICE_MIN_IN_FILTER.s(), String.valueOf(minPrice));
-        sendKeys(PRICE_MAX_IN_FILTER.s(), String.valueOf(maxPrice));
+        sendKeys(PRICE_MIN_IN_FILTER, String.valueOf(minPrice));
+        sendKeys(PRICE_MAX_IN_FILTER, String.valueOf(maxPrice));
         click(POPUP_SHOW_AFTER_FILTER);
 
         click(SORT_BLOCK);

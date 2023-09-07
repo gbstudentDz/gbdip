@@ -1,10 +1,7 @@
 package gb.dzhumaev.autotester;
 
 import io.qameta.allure.Allure;
-import org.openqa.selenium.By;
-import org.openqa.selenium.OutputType;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.support.events.WebDriverEventListener;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -13,6 +10,26 @@ import org.slf4j.LoggerFactory;
 public class RegisteringTestCongicuration extends TestCongicuration implements WebDriverEventListener {
 
     private static Logger logger = LoggerFactory.getLogger(WebDriver.class);
+
+    @Override
+    public void beforeNavigateTo(String url, WebDriver driver) {
+        Allure.step("Открытие страницы: " + PageUtils.getLastOpenedUrl());
+    }
+
+    @Override
+    public void beforeClickOn(WebElement element, WebDriver driver) {
+        Allure.step("Клик на элемент: " + PageUtils.getLastInvolvedElementName());
+    }
+
+    @Override
+    public void beforeChangeValueOf(WebElement element, WebDriver driver, CharSequence[] keysToSend) {
+        if (keysToSend[0].equals(Keys.ENTER)) {
+            Allure.step("Нажатие ENTER");
+        } else {
+            Allure.step("Печать в " + PageUtils.getLastInvolvedElementName()
+                    + ": " + PageUtils.getLastInsertedText());
+        }
+    }
 
     @Override
     public void beforeAlertAccept(WebDriver driver) {
@@ -31,11 +48,6 @@ public class RegisteringTestCongicuration extends TestCongicuration implements W
 
     @Override
     public void beforeAlertDismiss(WebDriver driver) {
-
-    }
-
-    @Override
-    public void beforeNavigateTo(String url, WebDriver driver) {
 
     }
 
@@ -85,21 +97,7 @@ public class RegisteringTestCongicuration extends TestCongicuration implements W
     }
 
     @Override
-    public void beforeClickOn(WebElement element, WebDriver driver) {
-        /*Allure.step("Клик на элемент: "
-                + " tag = " + element.getTagName() + " | "
-                + " class = " + element.getAttribute("class") + " | "
-                + " text = " + element.getText());*/
-        Allure.step("Клик на элемент: " + PageUtils.getLastClickedElementName());
-    }
-
-    @Override
     public void afterClickOn(WebElement element, WebDriver driver) {
-
-    }
-
-    @Override
-    public void beforeChangeValueOf(WebElement element, WebDriver driver, CharSequence[] keysToSend) {
 
     }
 
