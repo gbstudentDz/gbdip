@@ -90,4 +90,20 @@ public class PageUtils {
         TestCongicuration.getActions().sendKeys(Keys.ENTER);
         sleep(TIMEOUT_AFTER_ACTION.toSeconds());
     }
+
+    public static Double extractDouble(String s) {
+        StringBuilder sb = new StringBuilder();
+
+        for (char ch : s.toCharArray()) {
+            switch (ch) {
+                case '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '.':
+                    sb.append(ch);
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        return Double.parseDouble(sb.toString());
+    }
 }
