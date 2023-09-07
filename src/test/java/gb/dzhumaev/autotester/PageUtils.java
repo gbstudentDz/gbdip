@@ -1,7 +1,11 @@
 package gb.dzhumaev.autotester;
 
+import freemarker.template.TemplateHashModelEx2;
 import io.qameta.allure.Step;
+import org.apache.commons.lang3.tuple.Pair;
 import org.openqa.selenium.*;
+
+import java.util.ArrayList;
 
 import static gb.dzhumaev.autotester.Configuration.TIMEOUT_AFTER_ACTION;
 import static org.openqa.selenium.support.ui.ExpectedConditions.visibilityOfElementLocated;
@@ -93,17 +97,25 @@ public class PageUtils {
 
     public static Double extractDouble(String s) {
         StringBuilder sb = new StringBuilder();
+        boolean dotAlreadyAppend = false;
 
         for (char ch : s.toCharArray()) {
             switch (ch) {
-                case '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '.':
-                    sb.append(ch);
-                    break;
-                default:
-                    break;
+                case '0', '1', '2', '3', '4', '5', '6', '7', '8', '9' -> sb.append(ch);
+                case '.' -> {
+                    if (!dotAlreadyAppend) {
+                        sb.append(ch);
+                        dotAlreadyAppend = true;
+                    }
+                }
+                default -> {
+                }
             }
         }
 
         return Double.parseDouble(sb.toString());
+    }
+
+    public static void t() {
     }
 }
