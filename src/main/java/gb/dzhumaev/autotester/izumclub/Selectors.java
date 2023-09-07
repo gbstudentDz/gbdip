@@ -23,8 +23,8 @@ public class Selectors {
         public static final String PRICE_MIN_IN_FILTER = PRICE_FILTER_BLOCK + " input#arrFilter_P2_MIN";
         public static final String PRICE_ON_CARD = " .price";
         public static final String SORT_BLOCK =  " #sort-and-show-form .left-block .cs-select[tabindex='0']";
-        public static final String SORT_PRICE_DOWN = SORT_BLOCK + " li:nth-child(3) span";
-        public static final String SORT_PRICE_UP =  SORT_BLOCK + " li:nth-child(2) span";
+        public static final String SORT_PRICE_START_WITH_MAX = SORT_BLOCK + " li:nth-child(3) span";
+        public static final String SORT_PRICE__START_WITH_MIN =  SORT_BLOCK + " li:nth-child(2) span";
         public static final String TAGS_BLOCK_ON_HEADER = " .tags ul";
         public static final String TAG_1_ON_HEADER = TAGS_BLOCK_ON_HEADER + " li:nth-child(1)>a";
         public static final String TITLE_CATEGORY_PAGE = " .page_title h1";
