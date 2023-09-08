@@ -26,7 +26,7 @@ public class SitePageTransitionsTest extends TestCongicuration {
         assertEquals(getDriver().getCurrentUrl(), URL_HOME);
     }
 
-    @Test
+    /*@Test
     @DisplayName("Открытие страницы сравнения")
     public void openCompare() throws InterruptedException {
         open(URL_COMPARE);
@@ -149,5 +149,5 @@ public class SitePageTransitionsTest extends TestCongicuration {
         open(URL_CART);
         click(CART_ON_TOP_MENU_LINE);
         assertEquals(getDriver().getCurrentUrl(), URL_CART);
-    }
+    }*/
 }

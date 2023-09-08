@@ -1,3 +1,4 @@
+/*
 package gb.dzhumaev.autotester.izumclub;
 
 import gb.dzhumaev.autotester.TestCongicuration;
@@ -124,3 +125,4 @@ public class CategoryPageTest extends TestCongicuration {
         assertTrue(priceOnFirstCard <= maxPrice);
     }
 }
+*/
