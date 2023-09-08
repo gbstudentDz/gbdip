@@ -48,7 +48,6 @@ abstract public class TestCongicuration {
         }
 
         driver.manage().window().maximize();
-        driver.register(new RegisteringTestCongicuration());
         wait = new WebDriverWait(driver, Configuration.EXPLICIT_TIMEOUT);
         actions = new Actions(driver);
     }

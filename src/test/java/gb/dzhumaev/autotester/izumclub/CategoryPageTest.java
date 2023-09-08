@@ -99,7 +99,7 @@ public class CategoryPageTest extends TestCongicuration {
     }
 
     @Test
-    @DisplayName("Проверка фильтра максимальной цены")
+    @DisplayName("Проверка фильтров минимальной и максимальной цены")
     public void t6() throws InterruptedException {
         open(URL_CATEGORY_SMARTPHONES);
 
