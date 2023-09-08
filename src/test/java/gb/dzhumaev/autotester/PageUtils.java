@@ -32,7 +32,6 @@ public class PageUtils {
         TestCongicuration.getActions().perform();
         element.click();
         sleep(TIMEOUT_AFTER_ACTION.toSeconds());
-        //return element;
     }
 
     @Step("Клик на элемент: {si.name}")
