@@ -1,4 +1,3 @@
-/*
 package gb.dzhumaev.autotester.izumclub;
 
 import gb.dzhumaev.autotester.TestCongicuration;
@@ -86,4 +85,3 @@ public class ChangingCountersTest extends TestCongicuration {
         assertEquals("1", getText(CART_COUNTER.s()));
     }
 }
-*/
