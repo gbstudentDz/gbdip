@@ -13,18 +13,15 @@ public class RegisteringTestCongicuration extends TestCongicuration implements W
 
     @Override
     public void beforeNavigateTo(String url, WebDriver driver) {
-        Allure.step("xxx");
     }
 
     @Override
     public void beforeClickOn(WebElement element, WebDriver driver) {
-        Allure.step("xxx");
 
     }
 
     @Override
     public void beforeChangeValueOf(WebElement element, WebDriver driver, CharSequence[] keysToSend) {
-        Allure.step("xxx");
 
     }
 
